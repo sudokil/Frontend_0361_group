@@ -10,3 +10,20 @@ td {
 	height: 50px;
 	width: 50px;
 }
+td:first-child {
+	background: blue;
+}
+:nth-child(3) > td {
+	background: red;
+}
+
+tr>td:nth-last-child(even) {
+	background: green;
+}
+
+tr:nth-last-child(odd) {
+	background: orange;
+}
+tr:nth-last-child(even) {
+	background: purple;
+}
