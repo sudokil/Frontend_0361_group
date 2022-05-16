@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Домашнее задание Grid</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            html {
+                height: 100%;
+            }
+            body {
+                height: 100%;
+                margin: 0;
+            }
+            .wrapper {
+                display: grid;
+                min-height: 100%;
+                grid-template-rows: 200px auto auto 200px;
+                grid-template-columns: 200px 1fr 1fr;
+                grid-template-areas: 'h h h' 'a c c' 'a b b' 'f f f';
+            }
+            header {
+                grid-area: h;
+                background: gray;
+            }
+            footer {
+                grid-area: f;
+                background: brown;
+            }
+            aside {
+                grid-area: a;
+                background: yellow;
+            }
+            article {
+                grid-area: c;
+                background: cyan;
+            }
+            .block {
+                background: lightgreen;
+            }
+            .block + .block {
+                background: green;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>CONTENT</header>
+            
+            <aside>CONTENT</aside>
+            
+            <article>CONTENT</article>
+            
+            <div class="block">CONTENT</div>
+            
+            <div class="block">CONTENT</div>
+            
+            <footer>CONTENT</footer>
+        </div>
+    </body>
+</html>

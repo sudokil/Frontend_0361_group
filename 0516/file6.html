@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Трансформации</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            body {
+                width: 1000px;
+                overflow: hidden;
+            }
+            .whirlpool {
+                height: 100px;
+                width: 100px;
+                margin: 100px;
+                background: url('whirlpool.png') center center no-repeat;
+                animation: rotation 5s infinite;
+            }
+            .zver {
+                height: 220px;
+                width: 180px;
+                margin: 100px;
+                background-image: url('zver.png');
+                animation: run 5s infinite;
+            }
+            .cat {
+                height: 200px;
+                width: 200px;
+                margin: 100px;
+                background-image: url('Octocat_github.png');
+                background-size: cover;
+                transition: all 5s;
+            }
+            .cat:hover {
+                transform: translateY(-1000px);
+            }
+            @keyframes rotation {
+                from {
+                    transform: none;
+                    background-color: #fff;
+                }
+                to {
+                    transform: rotate(360deg);
+                    background-color: #777;
+                }
+            }
+            @keyframes run {
+                from {
+                    transform: translateX(1100px);
+                }
+                to {
+                    transform: translateX(-400px);
+                }
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="whirlpool"></div>
+        
+        <div class="zver"></div>
+        
+        <div class="cat"></div>
+    </body>
+</html>

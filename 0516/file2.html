@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Домашнее задание Flex</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            html {
+                height: 100%;
+            }
+            body {
+                height: 100%;
+                margin: 0;
+            }
+            .wrapper {
+                display: flex;
+                min-height: 100%;
+                flex-direction: column;
+            }
+            header {
+                height: 200px;
+                background: gray;
+                flex: none;
+            }
+            footer {
+                height: 200px;
+                background: brown;
+                flex: none;
+            }
+            main {
+                flex: 1 1 auto;
+                display: flex;
+                align-items: stretch;
+            }
+            aside {
+                width: 200px;
+                background: yellow;
+                flex: none;
+            }
+            .content {
+                flex: 1 1 auto;
+            }
+            article {
+                height: 50%;
+                background: cyan;
+            }
+            .blocks {
+                height: 50%;
+                display: flex;
+                align-items: stretch;
+            }
+            .oneblock {
+                background: lightgreen;
+                flex: 1 1 auto;
+            }
+            .oneblock + .oneblock {
+                background: green;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>CONTENT</header>
+            
+            <main>
+                <aside>CONTENT</aside>
+                
+                <div class="content">
+                    <article>CONTENT</article>
+                    
+                    <div class="blocks">
+                        <div class="oneblock">CONTENT</div>
+                        
+                        <div class="oneblock">CONTENT</div>
+                    </div>
+                </div>
+            </main>
+            
+            <footer>CONTENT</footer>
+        </div>
+    </body>
+</html>

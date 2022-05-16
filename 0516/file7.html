@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Трансформации</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            body {
+                margin: 0;
+            }
+            input {
+                margin: 100px auto;
+                display: block;
+            }
+            .trans {
+                display: flex;
+                justify-content: space-evenly;
+                margin: 100px auto;
+            }
+            .left, .middle, .right {
+                width: 100px;
+                height: 100px;
+                border: 1px solid red;
+                transition: all .5s;
+            }
+            .anim {
+                background: url('zver.png') center center no-repeat;
+                width: 250px;
+                height: 250px;
+                margin: 100px auto;
+            }
+            input[type="checkbox"]:checked ~ .trans .left {
+                transform: rotate(45deg);
+            }
+            input[type="checkbox"]:checked ~ .trans .middle {
+                transform: scale(0.75);
+            }
+            input[type="checkbox"]:checked ~ .trans .right {
+                transform: skew(20deg,-30deg);
+            }
+            input[type="checkbox"]:checked ~ .anim {
+                /*animation: zver 2s infinite linear;*/
+                animation: zver1 2s infinite linear;
+                position: relative;
+            }
+            @keyframes zver {
+                0% {
+                    transform: translateX(0);
+                }
+                25% {
+                    transform: translateX(-200%);
+                }
+                50% {
+                    transform: translateX(0);
+                }
+                75% {
+                    transform: translateX(200%);
+                }
+                100% {
+                    transform: translateX(0);
+                }
+            }
+            @keyframes zver1 {
+                0% {
+                    left: 0;
+                }
+                25% {
+                    left: -50%;
+                }
+                50% {
+                    left: 0;
+                }
+                75% {
+                    left: 50%;
+                }
+                100% {
+                    left: 0;
+                }
+            }
+        </style>
+    </head>
+    
+    <body>
+        <input type="checkbox">
+        
+        <div class="trans">
+            <div class="left"></div>
+            <div class="middle"></div>
+            <div class="right"></div>
+        </div>
+        
+        <div class="anim"></div>
+    </body>
+</html>
