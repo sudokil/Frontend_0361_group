@@ -1,0 +1,85 @@
+alert()
+confirm() --> true // false
+prompt() --> '...' // null
+
+console.log()
+console.error()
+
+document.write()
+
+123
+0b
+0o // 0
+0x
+
+9.999e999
+
+Infinity
+-Infinity
+
+NaN -- Not a Number
+
+'...'
+"..."
+`...${...}`
+
+''
+
+""
+
+``
+
+true
+false
+
+null
+
+undefined
+
+1 + 2
+typeof 1
+a ? b : c
+
+5 + '8'
+
+'5' + 8
+
+
++ - * / % **
++ -
++
+
+++
+--
+
+ 2 + 3 * 4 = 14
+
+
+let a = 2, b = 3, c = 5;
+
+
+a = a - 1
+a -= 1
+
+true && true = true
+true && false = false
+false && false = false
+Boolean(...) && Boolean(...) =
+
+true || true = true
+true || false = true
+false || false = false
+Boolean(...) || Boolean(...) =
+
+!true == false
+!false == true
+
+
+> >= < <=
+== !=
+=== !==
+
+typeof
+instanceof
+
+Boolean(...) ? "true"->(...) : "false"->(...)
