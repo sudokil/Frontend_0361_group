@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>JavaScript</title>
+    
+    <script>
+        // получить от пользователя число
+        let numb = parseInt(prompt('Введите число:'));
+        // проверить, число ли введено
+        if (isNaN(numb)) {
+            console.error('это не число!');
+        } else {
+            console.log(`число правильное - ${numb}!`);
+        }
+        // вывести число алертом
+        alert(numb);
+    </script>
+</head>
+<body></body>
+</html>
