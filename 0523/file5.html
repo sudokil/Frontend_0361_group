@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Магазин</title>
+    
+    <script>
+        let cashe = 100;
+        let bag = [];
+        
+        function buy(name, price) {
+            if (cashe < price) {
+                console.log('Не хватает денег');
+                return false;
+            }
+            cashe -= price;
+            bag.push(name);
+            return true;
+        }
+        
+        buy('спички', 1);
+        buy('хлеб', 30);
+        buy('водка', 200);
+        buy('сырок', 50);
+    </script>
+</head>
+<body></body>
+</html>
