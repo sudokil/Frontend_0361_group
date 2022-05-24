@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Objects</title>
+    
+    <script>
+        let q = 40
+        
+        let a = {
+            name: 'MyFirstObject',
+            weight: q,
+            tall: 15,
+            throwError: function(){
+                console.error(this.name);
+                console.error(this.tall);
+            }
+        };
+        
+        //a.tall = 25;
+        //alert(a);
+        //alert(a.name);
+        alert(a.weight);
+        //alert(a.tall);
+        //a.throwError();
+        /*
+        let b = 'qwe';
+        
+        let c = b;
+        
+        b = 5;
+        
+        console.log(c);
+        
+        let d = a;
+        
+        a.weight = 50;
+        
+        console.log(d.weight);
+        
+        a.self = d;
+        
+        a.tall = function() {
+            alert(15);
+        }
+        */
+        
+        
+    </script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Objects</title>
+    
+    <script>
+        let obj = {
+            atr1: 1,
+            atr2: 2,
+            atr3: 3,
+            atr4: 4,
+            atr5: 5,
+            atr6: 6
+        }
+        
+        obj['можем ли мы создать такое свойство?'] = true;
+        
+        for (let i in obj) {
+            console.log(i);
+            
+            console.log(obj[i]);
+        }
+        
+        console.error('atr1' in obj);
+        
+        
+    </script>
+</head>
+<body></body>
+</html>

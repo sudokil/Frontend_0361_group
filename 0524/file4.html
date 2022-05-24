@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Objects</title>
+    
+    <script>
+        let a = {
+            a: 1,
+            b: 2,
+            c: 3
+        }
+        
+        let b = a;
+        
+        let c = {
+            d: 'qqqq',
+            a: '1111'
+        };
+        
+        Object.assign(c, a);
+        
+        //console.log(b === a);
+        
+        //console.log(c === a);
+        
+        //console.log(c);
+        
+        let d = {};
+        
+        for (let i in a) {
+            d[i] = a[i];
+        }
+        
+        console.log(d === a);
+        console.log(d);
+        
+    </script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Objects</title>
+    
+    <script>
+        "use strict"
+        function nomethod() {
+            console.log(this);
+        }
+        
+        
+        let a = {
+            name: 'A',
+            method: nomethod,
+            valueOf(){
+                return 15;
+            }
+        };
+        
+        let b = {
+            name: 'B',
+            m: nomethod,
+            toString(){
+                return "This is a magic!";
+            }
+        };
+        
+        let c = nomethod;
+        
+        
+        a.method();
+        b.m();
+        c();
+        
+        /*
+        alert(a);
+        alert(b);
+        
+        alert(1 + a);
+        alert(1 + b);
+        */
+        
+        /*
+        console.log(Math.random());
+        
+        Math.random = 5;
+        
+        console.log(Math.random());
+        */
+        
+        
+        
+        
+        
+    </script>
+</head>
+<body></body>
+</html>

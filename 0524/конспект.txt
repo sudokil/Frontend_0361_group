@@ -1,0 +1,39 @@
+{}
+
+key: value
+
+
+object = {
+    key: value,
+    key: value,
+    key: value,
+    key: value,
+    key: value
+}
+
+object.key = value
+object['key'] = value
+
+for (i in obj) {
+    obj[i]...
+}
+
+объект - ссылочный тип!!!
+
+Object.assign(dest, src[, src2...])
+
+this
+
+у стрелочных функций своего this нет
+
+{
+    name: name,
+    name,
+    method: function(){},
+    method(){}
+}
+
+new
+
+
+

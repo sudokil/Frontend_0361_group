@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Objects</title>
+    
+    <script>
+        /*
+         * 1) объект содержит свойство name.
+         * 2) объект содержит метод getName(), получающий имя у пользователя.
+         * 3) объект содержит метод greet(), выводящий алерт с приветствием пользователя по имени (например, "Привет, Вася!")
+         */
+        let obj = {
+            getName: function() {
+                this.name = prompt('Как вас зовут?');
+            },
+            greet: function() {
+                alert('Здравствуйте, ' + this.name);
+            }
+        }
+        
+        obj.getName();
+        obj['greet']();
+    </script>
+</head>
+<body></body>
+</html>

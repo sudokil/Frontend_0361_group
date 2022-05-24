@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Objects</title>
+    
+    <script>
+        function Car(name) {
+            this.name = name;
+            this.price = 10000000;
+            this.alert = function(){
+                alert(this.name);
+            };
+        }
+        /*
+        return {
+            name: name,
+            price: ...
+        }
+        */
+        
+        let car = new Car('BMW');
+        
+        
+        console.log(car);
+    </script>
+</head>
+<body></body>
+</html>

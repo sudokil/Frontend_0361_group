@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Objects</title>
+    
+    <script>
+        /*
+         * Создаем объект Пользователь
+         * 1) метод узнает у пользователя, как его зовут и сколько ему лет, и сохраняет эту информацию;
+         * 2) метод определяет статус пользователя по возрасту;
+         * 3) метод выводит сведения о пользователе: имя и статус.
+         * 
+         * **Создаем функцию-конструктор, создающую объекты типа Пользователь.
+         */
+        /*
+        let User = {
+            getUserInfo() {
+                this.name = prompt('Ваше имя?');
+                this.age = +prompt('Ваш возраст?');
+            },
+            setStatus() {
+                if (this.age < 16) {
+                    this.status = 'too young';
+                } else if (this.age > 91) {
+                    this.status = 'too old';
+                } else {
+                    this.status = 'correct';
+                }
+            },
+            toString(){
+                return `object User named ${this.name} is ${this.status}`;
+            }
+        }
+        User.getUserInfo();
+        User.setStatus();
+        document.write(User);
+        */
+        function User() {
+            this.getUserInfo = function() {
+                this.name = prompt('Ваше имя?');
+                this.age = +prompt('Ваш возраст?');
+            };
+            this.setStatus = function() {
+                if (this.age < 16) {
+                    this.status = 'too young';
+                } else if (this.age > 91) {
+                    this.status = 'too old';
+                } else {
+                    this.status = 'correct';
+                }
+            };
+            this.toString = function() {
+                return `object User named ${this.name} is ${this.status}`;
+            }
+        }
+        user = new User;
+        user.getUserInfo();
+        user.setStatus();
+        document.write(user);
+    </script>
+</head>
+<body></body>
+</html>
