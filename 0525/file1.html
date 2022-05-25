@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Array</title>
+    
+    <script>
+        /*
+        let q = [1, 2, 3, 4];
+        
+        let a = '1234';
+        
+        for (i of a) {
+            alert(i);
+        }
+        
+        console.log(q.join('-'));
+        */
+        
+        let q = [
+            {
+                num: 1,
+                name: 'Ваня'
+            },
+            {
+                num: 3,
+                name: 'Петя'
+            },
+            {
+                num: 5,
+                name: 'Маша'
+            },
+            {
+                num: 4,
+                name: 'Саша'
+            },
+            {
+                num: 2,
+                name: 'Дима'
+            }
+        ]
+        
+        /*for (i of q) {
+            console.log(i.num)
+        }*/
+        q.forEach(w => console.log(w.num));
+        
+        console.log('-----------------------');
+        
+        q.sort(function(a,b){
+            if (a.num > b.num) {
+                return -1;
+            } else if (a.num < b.num) {
+                return 1;
+            } else {
+                return 0;
+            }
+        })
+        
+        for (i of q) {
+            console.log(i.num)
+        }
+        
+        let r = q.map(function(a, b, c) {
+            return a.name;
+        })
+        console.log('-----------------------');
+        console.log(r);
+        console.log(q);
+        
+        let e = q.forEach(function(a, b, c) {
+            a.type = 'object';
+        })
+        
+        console.log('-----------------------');
+        console.log(e);
+        console.log(q);
+        
+        console.log('-----------------------');
+        console.log(q.find(function(a, b, c) {
+            return (a.num === 3);
+        }));
+        
+        //console.log(q.reduce(function(fact, item) {return (fact * item.num)}, 1));
+        console.log(q.reduce((fact, item) => fact * item.num, 1));
+        
+    </script>
+</head>
+<body></body>
+</html>

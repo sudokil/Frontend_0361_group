@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Destruction</title>
+    
+    <script>
+        let q = {
+            one: 1,
+            two: 2,
+            three: 3
+        };
+        
+        let {one, three} = q; // имена присваиваемых переменных должны совпадать с именами свойств объекта
+        
+        
+        /*console.log(one);
+        console.log(three);*/
+        
+        let a = [5, 6, 7, 8, 9, 10];
+        
+        let [, w, , e] = a; // слева переменные в квадратных скобках, справа перебираемый объект
+        
+        let [r, x, , ...z] = a;
+        
+        /*console.log(w);
+        console.log(e);*/
+        console.log(r);
+        console.log(x);
+        console.log(z);
+        
+        
+        
+    </script>
+</head>
+<body></body>
+</html>
