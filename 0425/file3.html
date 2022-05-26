@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>CSS</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .ded div {
+                color: red;
+            }
+            p {
+                color: blue;
+            }
+            .vis,
+            :checked ~ .vis + .vis {
+                display: block;
+            }
+            :checked ~ .vis,
+            .vis + .vis {
+                display: none;
+            }
+            ul li {
+                color: blue;
+            }
+            ul > li {
+                color: red;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <input type="checkbox" id="clicker">
+        <label for="clicker">Change vision</label>
+        <p class="vis">Not checked</p>
+        <p class="vis">Checked</p>
+        
+        
+        <div class="ded">
+            Some text
+            <div class="otec">
+                Some text
+                <div class="child1">
+                    Some text
+                    <p>Some text</p>
+                    <p class="classed_paragraf">Some text</p>
+                    <div>Some text</div>
+                    <p class="classed_paragraf" id="unique_paragraf">Some text</p>
+                </div>
+                <div class="child2">
+                    Some text
+                    <p>Some text</p>
+                    <p class="classed_paragraf" id="unique_paragraf">Some text</p>
+                </div>
+                <div class="child3">Some text</div>
+            </div>
+        </div>
+        
+        <ul>
+            <li>Point</li>
+            <li>Point</li>
+            <li>
+                <ol>
+                    <li>Point</li>
+                    <li>Point</li>
+                    <li>Point</li>
+                    <li>Point</li>
+                </ol>
+            </li>
+            <li>Point</li>
+        </ul>
+    </body>
+</html>

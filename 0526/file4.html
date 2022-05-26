@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Шахматы</title>
+    
+    <script>
+        let chess = {
+            board: {
+                'a': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                'b': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                'c': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                'd': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                'e': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                'f': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                'g': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                'h': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ]
+            },
+            figures: {
+                white: [],
+                black: []
+            },
+            getPos(position) {
+                return this.board[position[0]][position[1] - 1];
+            },
+            setPos(position, value) {
+                this.board[position[0]][position[1] - 1] = value;
+            }
+        };
+        
+        makeChFig('King', 'white', 'e1');
+        makeChFig('Queen', 'white', 'd1');
+        makeChFig('Queen', 'black', 'd8');
+        
+        
+        function ChessFigure(name, color, position) {
+            this.name = name;
+            this.color = color;
+            this.position = position; // 'a1', 'h8'...
+        }
+        function makeChFig(name, color, position) {
+            let fig = new ChessFigure(name, color, position);
+            chess.figures[color].push(fig);
+            chess.setPos(position, fig);
+        }
+        function makeStep(position_before, position_after) {
+            /*
+             * 1) проверяем, есть ли фигура на поле position_before
+             * 2) проверяем, есть ли фигура на поле position_after
+             * 3) если фигура на поле position_before есть, берем эту фигуру и переставляем на поле position_after, если оно пустое
+             * 4) не забываем указать в фигуре ее новое положение!!!
+             */
+            if (chess.getPos(position_before)) {
+                let fig = chess.getPos(position_before);
+                if (!chess.getPos(position_after)) {
+                    chess.setPos(position_after, fig);
+                    chess.setPos(position_before, null);
+                    fig.position = position_after;
+                    console.log(fig.name + ' ходит');
+                    return;
+                } else if (fig.color != chess.getPos(position_after).color) {
+                    let killed = chess.getPos(position_after);
+                    chess.figures[killed.color].splice(chess.figures[killed.color].indexOf(killed), 1);
+                    chess.setPos(position_after, fig);
+                    chess.setPos(position_before, null);
+                    fig.position = position_after;
+                    console.log(fig.name + ' бьет ' + killed.name);
+                    return;
+                }
+            }
+            console.error('Так ходить нельзя!');
+        }
+    </script>
+</head>
+<body></body>
+</html>

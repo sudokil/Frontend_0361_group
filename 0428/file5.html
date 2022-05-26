@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Position</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            body {
+                margin: 20px 10px;
+                padding: 20px 10px;
+            }
+            div {
+                height: 250px;
+                width: 500px;
+            }
+            .red {
+                background: red;
+                color: white;
+            }
+            .red > span {
+                position: relative;
+                z-index: -1;
+            }
+            .green {
+                background: green;
+                display: none;
+            }
+            .blue {
+                background: blue;
+                opacity: 0;
+            }
+            .yellow {
+                background: yellow;
+                background: transparent;
+                border-color: transparent;
+                color: transparent;
+            }
+            .pink {
+                background: pink;
+                visibility: hidden;
+            }
+            .black {
+                background: black;
+                color: white;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="red"><span>111</span></div>
+        
+        <div class="green">222</div>
+        
+        <div class="blue">333</div>
+        
+        <div class="yellow">444</div>
+        
+        <div class="pink">555</div>
+        
+        <div class="black">666</div>
+    </body>
+</html>

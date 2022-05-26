@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Стилизация нестилизуемого</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            input[type="checkbox"] {
+                display: none;
+            }
+            label {
+                display: block;
+                width: 100px;
+                height: 100px;
+                background: url('1.png');
+            }
+            input[type="checkbox"]:checked + label {
+                background: url('2.png');
+            }
+            #text {
+                display: block;
+                padding: 10px;
+                border: 2px solid red;
+                width: 200px;
+                height: 30px;
+                font: bold 20px Arial;
+                line-height: 30px;
+                background: transparent;
+            }
+            #text::placeholder {
+                opacity: 0;
+            }
+            .holder {
+                position: relative;
+            }
+            .imitator {
+                position: absolute;
+                z-index: -1;
+                background: white;
+                width: 204px;
+                height: 34px;
+                padding: 10px;
+                font: italic 20px Arial;
+                line-height: 34px;
+                color: blue;
+                top: 0;
+                left: 0;
+            }
+            .inner {
+                width: 400px;
+                height: 400px;
+                background: url('квч.jpg') center center / contain no-repeat;
+            }
+            .inner:first-child {
+                background-image: url('вчк.jpg');
+            }
+            .inner:last-child {
+                background-image: url('чвк.jpg');
+            }
+            .desk {
+                height: 400px;
+                width: 450px;
+                overflow-y: scroll;
+            }
+            .wrapper {
+                height: 400px;
+                width: 400px;
+                overflow: hidden;
+                float: left;
+            }
+            .anime {
+                background: transparent;
+                margin-left: 500px;
+                width: 400px;
+                height: 400px;
+                position: relative;
+            }
+            .back {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                animation: 5s infinite;
+            }
+            .first {
+                background: linear-gradient(to bottom right, red 5%, green 25%, red 55%, green 75%);
+                opacity: 1;
+                animation-name: first;
+            }
+            .second {
+                background: linear-gradient(to top right, yellow, gray);
+                opacity: 0;
+                animation-name: second;
+            }
+            .third {
+                background: linear-gradient(to left, blue, white);
+                opacity: 0;
+                animation-name: third;
+            }
+            @keyframes first {
+                50% {
+                    opacity: 0;
+                }
+            }
+            @keyframes second {
+                33% {
+                    opacity: 1;
+                }
+            }
+            @keyframes third {
+                66% {
+                    opacity: 1;
+                }
+            }
+            /*
+            @keyframes first {
+                25% {
+                    opacity: 1;
+                }
+                33% {
+                    opacity: 0;
+                }
+                91% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            @keyframes second {
+                25% {
+                    opacity: 0;
+                }
+                33% {
+                    opacity: 1;
+                }
+                58% {
+                    opacity: 1;
+                }
+                66% {
+                    opacity: 0;
+                }
+            }
+            @keyframes third {
+                58% {
+                    opacity: 0;
+                }
+                66% {
+                    opacity: 1;
+                }
+                91% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+            */
+            .list {
+                list-style: none;
+                margin: 10px auto;
+                padding: 0;
+                width: 60%;
+                counter-reset: nomer 500;
+            }
+            .list li {
+                list-style: none;
+                counter-increment: nomer;
+                position: relative;
+                line-height: 30px;
+                height: 30px;
+                padding-left: 60px;
+                margin: 10px;
+            }
+            .list li:before {
+                content: "№ " counter(nomer) ". ";
+                position: absolute;
+                left: 0;
+                top: 0;
+                color: lightgreen;
+                background: cyan;
+                border-radius: 5px;
+            }
+        </style>
+        
+        <script>
+            function checkplaceholder() {
+                if (document.querySelector('#text').value != '') {
+                    document.querySelector('.imitator').innerHTML = ''
+                } else {
+                    document.querySelector('.imitator').innerHTML = 'Text now is here...'
+                }
+            }
+        </script>
+    </head>
+    
+    <body>
+        <input type="checkbox" id="box">
+        <label for="box"></label>
+        
+        <div class="holder">
+            <input type="text" id="text" onkeyup="checkplaceholder();">
+            <div class="imitator">Text now is here...</div>
+        </div>
+        
+        <div class="wrapper">
+            <div class="desk">
+                <div class="inner"></div>
+                <div class="inner"></div>
+                <div class="inner"></div>
+            </div>
+        </div>
+        
+        <div class="anime">
+            <div class="back first"></div>
+            <div class="back second"></div>
+            <div class="back third"></div>
+        </div>
+        
+        <ul class="list">
+            <li>Раз</li>
+            <li>Два</li>
+            <li>Три</li>
+            <li>Четыре</li>
+            <li>Пять</li>
+        </ul>
+    </body>
+</html>

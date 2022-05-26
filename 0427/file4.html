@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Шахматы</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .table {
+                border-collapse: collapse;
+                margin: 0 auto;
+                width: 500px;
+                display: table;
+            }
+            .tr {
+                display: table-row;
+            }
+            .td, .th {
+                display: table-cell;
+                vertical-align: middle;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                font-size: 30px;
+            }
+            .th {
+                background: lightgray;
+                color: blue;
+                font-weight: bold;
+            }
+            .odd .td:nth-child(odd),
+            .even .td:nth-child(even) {
+                background: white;
+                color: black;
+            }
+            .even .td:nth-child(odd),
+            .odd .td:nth-child(even) {
+                background: black;
+                color: white;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="table">
+            <div class="tr odd">
+                <div class="th"></div>
+                <div class="th">A</div>
+                <div class="th">B</div>
+                <div class="th">C</div>
+                <div class="th">D</div>
+                <div class="th">E</div>
+                <div class="th">F</div>
+                <div class="th">G</div>
+                <div class="th">H</div>
+                <div class="th"></div>
+            </div>
+            <div class="tr even">
+                <div class="th">8</div>
+                <div class="td">&#9820;</div>
+                <div class="td">&#9822;</div>
+                <div class="td">&#9821;</div>
+                <div class="td">&#9819;</div>
+                <div class="td">&#9818;</div>
+                <div class="td">&#9821;</div>
+                <div class="td">&#9822;</div>
+                <div class="td">&#9820;</div>
+                <div class="th">8</div>
+            </div>
+            <div class="tr odd">
+                <div class="th">7</div>
+                <div class="td">&#9823;</div>
+                <div class="td">&#9823;</div>
+                <div class="td">&#9823;</div>
+                <div class="td">&#9823;</div>
+                <div class="td">&#9823;</div>
+                <div class="td">&#9823;</div>
+                <div class="td">&#9823;</div>
+                <div class="td">&#9823;</div>
+                <div class="th">7</div>
+            </div>
+            <div class="tr even">
+                <div class="th">6</div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="th">6</div>
+            </div>
+            <div class="tr odd">
+                <div class="th">5</div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="th">5</div>
+            </div>
+            <div class="tr even">
+                <div class="th">4</div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="th">4</div>
+            </div>
+            <div class="tr odd">
+                <div class="th">3</div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="th">3</div>
+            </div>
+            <div class="tr even">
+                <div class="th">2</div>
+                <div class="td">&#9817;</div>
+                <div class="td">&#9817;</div>
+                <div class="td">&#9817;</div>
+                <div class="td">&#9817;</div>
+                <div class="td">&#9817;</div>
+                <div class="td">&#9817;</div>
+                <div class="td">&#9817;</div>
+                <div class="td">&#9817;</div>
+                <div class="th">2</div>
+            </div>
+            <div class="tr odd">
+                <div class="th">1</div>
+                <div class="td">&#9814;</div>
+                <div class="td">&#9816;</div>
+                <div class="td">&#9815;</div>
+                <div class="td">&#9813;</div>
+                <div class="td">&#9812;</div>
+                <div class="td">&#9815;</div>
+                <div class="td">&#9816;</div>
+                <div class="td">&#9814;</div>
+                <div class="th">1</div>
+            </div>
+            <div class="tr even">
+                <div class="th"></div>
+                <div class="th">A</div>
+                <div class="th">B</div>
+                <div class="th">C</div>
+                <div class="th">D</div>
+                <div class="th">E</div>
+                <div class="th">F</div>
+                <div class="th">G</div>
+                <div class="th">H</div>
+                <div class="th"></div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Форма</title>
+        
+        <meta charset="utf-8">
+    </head>
+    
+    <body>
+        <h1>Форма</h1>
+        
+        <form action="#" method="GET">
+        <!-- <form action="#" method="POST"> -->
+            <fieldset>
+                <legend>Group 1</legend>
+                <input type="text" name="f1"><br>
+                <input type="password" name="f2"><br>
+                <input type="hidden" name="f3" value="128"><br>
+                <input type="file" name="f4"><br>
+            </fieldset>
+            <label><input type="radio" name="f5" value="Y"> Скажи "да"</label><br>
+            <label><input type="radio" name="f5" value="N"> Скажи "нет"</label><br>
+            <input type="checkbox" name="f6" value="checked" id="cb"><br>
+            <label for="cb">ярлык для чекбокса</label><br>
+            <fieldset>
+                <legend>Group 2</legend>
+                <input type="color" name="f7"><br>
+                <input type="email" name="f8"><br>
+                <input type="number" name="f9"><br>
+                <input type="range" name="f10"><br>
+                <input type="search" name="f11"><br>
+                <input type="tel" name="f12"><br>
+                <input type="url" name="f13"><br>
+                <input type="date" name="f14"><br><br><br><br>
+            </fieldset>
+            
+            <select name="hero">
+                <option selected disabled>Выберите героя</option>
+                <option value="Чебурашка">Чебурашка</option>
+                <option value="Крокодил Гена">Крокодил Гена</option>
+                <option value="Шапокляк">Шапокляк</option>
+                <option value="Крыса Лариса">Крыса Лариса</option>
+            </select><br><br><br><br>
+            
+            <select size="4" multiple name="heroes">
+                <option disabled>Выберите героя</option>
+                <option value="Чебурашка">Чебурашка</option>
+                <option selected value="Крокодил Гена">Крокодил Гена</option>
+                <option value="Шапокляк">Шапокляк</option>
+                <option value="Крыса Лариса">Крыса Лариса</option>
+            </select><br><br><br><br>
+            
+            <textarea name="textarea1"></textarea><br>
+            
+            <input type="image" src="imgbutton.gif">
+            <input type="submit" value="Отправить">
+            <input type="reset" value="Очистить форму">
+            <input type="button" value="Просто кнопка">
+            
+            <button type="submit">Отправить</button>
+            <button type="reset">Очистить форму</button>
+            <button type="button">Просто кнопка</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+﻿body {
+	margin: 0;
+}
+table {
+	border-collapse: separate;
+	margin: 100px auto;
+}
+td {
+	border: 1px solid black;
+	height: 50px;
+	width: 50px;
+}
+td:first-child {
+	background: blue;
+}
+:nth-child(3) > td {
+	background: red;
+}
+:nth-child(5) {
+	background: green;
+}
+td:hover {
+	background: yellow;
+}

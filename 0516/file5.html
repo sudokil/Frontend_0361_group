@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Трансформации</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .transformed {
+                height: 100px;
+                width: 100px;
+            }
+            .transformed {
+                position: relative;
+            }
+            .face, .backface {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                backface-visibility: hidden;
+                transition: all 2s;
+                font-size: 20px;
+                line-height: 100px;
+                text-align: center;
+            }
+            .face {
+                background: green;
+                color: white;
+            }
+            .backface {
+                background: blue;
+                color: yellow;
+                transform: rotateY(180deg);
+            }
+            .transformed:hover .face {
+                transform: rotateY(180deg);
+            }
+            .transformed:hover .backface {
+                transform: rotateY(360deg);
+            }
+            .flex {
+                display: flex;
+                width: 600px;
+                height: 200px;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+        </style>
+        
+        <script>
+            window.onload = () => document.querySelectorAll('.backface')[Math.floor(Math.random()*3)].innerHTML = 'здесь!';
+        </script>
+    </head>
+    
+    <body>
+        <div class="flex">
+            <div class="transformed">
+                <div class="face">?</div>
+                <div class="backface">пусто</div>
+            </div>
+            <div class="transformed">
+                <div class="face">?</div>
+                <div class="backface">пусто</div>
+            </div>
+            <div class="transformed">
+                <div class="face">?</div>
+                <div class="backface">пусто</div>
+            </div>
+        </div>
+    </body>
+</html>

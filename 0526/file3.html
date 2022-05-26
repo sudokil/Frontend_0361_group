@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Светофор</title>
+    
+    <script>
+        let svetofor = {
+            colors: [
+                'КРАСНЫЙ ЦВЕТ',
+                'ЖЕЛТЫЙ ЦВЕТ',
+                'ЗЕЛЕНЫЙ ЦВЕТ'
+            ],
+            pointer: 0,
+            changeColor() {
+                this.pointer = (this.pointer + 1) % 3; // 3 % 3 = 0!!!
+            },
+            getColor() {
+                return this.colors[this.pointer];
+            }
+        };
+        
+        function use(){
+            svetofor.changeColor();
+        }
+        
+        setInterval(use, 2000);
+        
+        
+        
+        
+    </script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Position</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            body {
+                margin: 20px 10px;
+                padding: 20px 10px;
+                position: relative;
+            }
+            div {
+                height: 250px;
+                width: 500px;
+            }
+            .red {
+                background: red;
+            }
+            .green {
+                background: green;
+                position: absolute;
+                left: 50px;
+                top: 300px;
+                z-index: -1;
+            }
+            .blue {
+                background: blue;
+                position: relative;
+            }
+            .yellow {
+                background: yellow;
+            }
+            .pink {
+                background: pink;
+            }
+            .black {
+                background: black;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="red"></div>
+        
+        
+        
+        <div class="blue"><div class="green"></div></div>
+        
+        <div class="yellow"></div>
+        
+        <div class="pink"></div>
+        
+        <div class="black"></div>
+    </body>
+</html>

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Flex</title>
+        
+        <style>
+            body {
+                margin: 0;
+            }
+            .flexparent {
+                background: pink;
+                /*width: 600px;*/
+                height: 600px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                /*align-items: stretch;*/
+                align-items: flex-start;
+                /*flex-wrap: wrap;
+                align-content: space-around;*/
+            }
+            .flexparent > div {
+                width: 100px;
+                height: 100px;
+                flex: none;
+            }
+            .flexchild1 {
+                background: red;
+                /*flex: 1 1 100px !important;*/
+                align-self: flex-end;
+                order: 3;
+            }
+            .flexchild2 {
+                background: green;
+                order: 1;
+            }
+            .flexchild3 {
+                background: blue;
+                order: 6;
+            }
+            .flexchild4 {
+                background: yellow;
+                order: 0;
+            }
+            @media screen and (max-width: 1000px) {
+                .flexchild1 {
+                    order: 1;
+                }
+                .flexchild2 {
+                    order: 5;
+                }
+                .flexchild3 {
+                    order: 2;
+                }
+                .flexchild4 {
+                    order: 3;
+                }
+            }
+            @media screen and (max-width: 700px) {
+                .flexchild1 {
+                    order: 2;
+                }
+                .flexchild2 {
+                    order: 4;
+                }
+                .flexchild3 {
+                    order: 1;
+                }
+                .flexchild4 {
+                    order: 3;
+                }
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="flexparent">
+            <div class="flexchild1"></div>
+            <div class="flexchild2"></div>
+            <div class="flexchild3"></div>
+            <div class="flexchild4"></div>
+            <!-- <div class="flexchild1"></div> -->
+            <!-- <div class="flexchild2"></div> -->
+            <!-- <div class="flexchild3"></div> -->
+            <!-- <div class="flexchild4"></div> -->
+            <!-- <div class="flexchild1"></div> -->
+            <!-- <div class="flexchild2"></div> -->
+            <!-- <div class="flexchild3"></div> -->
+            <!-- <div class="flexchild4"></div> -->
+        </div>
+    </body>
+</html>

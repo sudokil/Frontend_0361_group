@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Calculator</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .calc {
+                display: grid;
+                width: 415px;
+                height: 380px;
+                background: pink;
+                border: 5px solid pink;
+                gap: 5px;
+                grid-template-columns: repeat(4, 100px);
+                grid-template-rows: repeat(6, 50px);
+                grid-template-areas: "s s s s" "s s s s" "b b b b" "b b b b" "b b b b" "b b b b" "b b b b";
+            }
+            .screen {
+                grid-area: s;
+                background: black;
+                color: #7f7;
+                font: 50px/85px Arial;
+                text-align: right;
+                padding: 10px;
+            }
+            .button {
+                background: gray;
+                color: white;
+                font: 30px/50px Arial;
+                text-align: center;
+                box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                border-radius: 5px;
+                user-select: none;
+            }
+            .button:hover {
+                cursor: pointer;
+            }
+            .button:active {
+                box-shadow: inset 1px 1px 5px rgba(0,0,0,0.5);
+            }
+            .digit {
+                background: white;
+                color: black;
+            }
+            .action {
+                background: red;
+                color: yellow;
+            }
+            sup {
+                font-size: 15px;
+            }
+            span {
+                margin-top: -10px;
+                display: inline-block;
+            }
+            strong {
+                color: red;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="calc">
+            <div class="screen">0</div>
+            <div class="button">1/x</div>
+            <div class="button"><span>x<sup>2</sup></span></div>
+            <div class="button"><strong>C</strong></div>
+            <div class="button">&divide;</div>
+            <div class="button digit">7</div>
+            <div class="button digit">8</div>
+            <div class="button digit">9</div>
+            <div class="button">&times;</div>
+            <div class="button digit">4</div>
+            <div class="button digit">5</div>
+            <div class="button digit">6</div>
+            <div class="button">&minus;</div>
+            <div class="button digit">1</div>
+            <div class="button digit">2</div>
+            <div class="button digit">3</div>
+            <div class="button">&plus;</div>
+            <div class="button digit">+/-</div>
+            <div class="button digit">0</div>
+            <div class="button digit">.</div>
+            <div class="button action">&equals;</div>
+        </div>
+    </body>
+</html>

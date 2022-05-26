@@ -1,0 +1,38 @@
+﻿body {
+	margin: 0;
+}
+div {
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+}
+p {
+	margin: 0 0 0 100px;
+}
+p:first-child {
+	margin-top: 2em;
+}
+p:last-child {
+	margin-bottom: 2em;
+	position: relative;
+}
+p::before {
+	content: "\2765";
+	margin-right: 16px;
+	color: blue;
+	font-size: 1.2em;
+	line-height: 1em;
+}
+ul {
+	margin: 0 0 0 100px;
+	padding: 0;
+	list-style-position: inside;
+}
+p:last-child::after {
+	content: "";
+	position: absolute;
+	height: 100px;
+	width: 100px;
+	background: green;
+	top: -100px;
+	left: 300px;
+}

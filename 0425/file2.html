@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>input, атрибут list</title>
+ </head>
+ <body>
+  <form> 
+   <p><input list="cocktail"></p>
+   <datalist id="cocktail">
+    <option>Аперитивы</option>
+    <option>Горячие</option>
+    <option>Десертные</option>
+    <option>Диджестивы</option>
+    <option>Молочные</option>
+    <option>Слоистые</option>
+   </datalist>
+   <br>
+   <br>
+   
+   <input type="text" pattern="[0-9]{16}">
+   
+   <br>
+   <br>
+   
+   <select name="hero" multiple size="1">
+                <option selected disabled>Выберите героя</option>
+                <option value="Чебурашка">Чебурашка</option>
+                <option value="Крокодил Гена">Крокодил Гена</option>
+                <option value="Шапокляк">Шапокляк</option>
+                <option value="Крыса Лариса">Крыса Лариса</option>
+            </select>
+   
+   <button>Pusk!</button>
+  </form> 
+ </body>
+</html>

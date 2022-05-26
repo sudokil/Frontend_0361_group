@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Words & letters</title>
+    
+    <script>
+        let input = 'Мировые цены на нефть в ходе торгов незначительно растут.';
+        
+        console.log(input);
+        
+        console.log(input.length);
+        
+        console.log(input.split(' ').length);
+        
+        let letters = {};
+        
+        for (i of 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя') {
+            letters[i] = 0;
+        }
+        
+        //console.log(letters);
+        
+        for (i of input.toLowerCase()) {
+            if (typeof letters[i] == 'number') letters[i]++;
+        }
+        
+        for (i of 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя') {
+            if (letters[i] == 0) delete letters[i];
+        }
+        
+        console.log(letters);
+        
+        console.log(Object.values(letters).reduce((sum, current) => sum + current, 0));
+        
+        
+    </script>
+</head>
+<body></body>
+</html>

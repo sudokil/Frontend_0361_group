@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Footer to page bottom</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            html {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+                height: 100%;
+            }/*
+            .wrapper {
+                box-sizing: border-box;
+                min-height: 100%;
+                padding-bottom: 200px;
+            }*/
+            header {
+                height: 200px;
+                background: pink;
+            }
+            footer {
+                height: 200px;
+                background: gray;
+                margin-top: -200px;
+            }
+            main {
+                min-height: calc(100% - 400px);
+                padding-bottom: 200px;
+                background: yellow;
+                
+                
+            }
+        </style>
+    </head>
+    
+    <body>
+        <!-- <div class="wrapper"> -->
+            <header></header>
+            
+            <main></main>
+        <!-- </div> -->
+        <footer></footer>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Адаптивность</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            body {
+                margin: 0;
+            }
+            .container {
+                background: pink;
+                height: 1000px;
+                border: 1px solid black;
+                margin: 0 auto;
+                width: 1400px;
+                display: flex;
+                justify-content: space-evenly;
+                gap: 20px;
+            }
+            .unit {
+                height: 100px;
+                width: 100px;
+                background: green;
+                flex: none;
+            }
+            .unit:hover {
+                background: blue;
+            }
+            @media screen and (max-width:1420px) {
+                .container {
+                    width: 1200px;
+                }
+            }
+            @media screen and (max-width:1220px) {
+                .container {
+                    width: 1000px;
+                    flex-wrap: wrap;
+                }
+            }
+            @media screen and (max-width:1020px) {
+                .container {
+                    width: auto;
+                    margin: 0 10px;
+                }
+            }
+            @media screen and (max-width:640px) {
+                .container {
+                    display: block;
+                    overflow-y: auto;
+                }
+                .unit {
+                    margin: 100px auto;
+                }
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="unit"></div>
+            <div class="unit"></div>
+            <div class="unit"></div>
+            <div class="unit"></div>
+            <div class="unit"></div>
+            <div class="unit"></div>
+            <div class="unit"></div>
+            <div class="unit"></div>
+            <div class="unit"></div>
+            <div class="unit"></div>
+        </div>
+    </body>
+</html>
