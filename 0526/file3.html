@@ -20,15 +20,16 @@
                 return this.colors[this.pointer];
             }
         };
-        
+        /*
         function use(){
             svetofor.changeColor();
         }
         
         setInterval(use, 2000);
+        */
         
-        
-        
+        //setInterval(svetofor.changeColor, 2000);
+        setInterval(svetofor.changeColor.bind(svetofor), 2000);
         
     </script>
 </head>

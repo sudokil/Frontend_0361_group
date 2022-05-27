@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Functions</title>
+    
+    <script>
+        /*
+        //function summa(...arr) {
+        function summa() {
+            let res = 0;
+            //for (i of arr) {
+            for (i of arguments) {
+                res += i;
+            }
+            return res;
+        }
+        
+        console.log(summa(1));
+        console.log(summa());
+        console.log(summa(2,3,5));
+        console.log(summa(8,12));
+        console.log(summa(9,9,9,9,9));
+        
+        
+        function makeObj(name, age, ...QwErTy) {
+            let res = {
+                name,
+                age,
+            };
+            //console.log(arguments);
+            //console.log(QwErTy);
+            
+            for (let i = 0; i < QwErTy.length; i++) {
+                res[`prop${i+1}`] = QwErTy[i];
+            }
+            return res;
+        }
+        
+        console.log(makeObj('John',40,0,0,0));
+        console.log(makeObj('James',40,'Bond','agent','007'));
+        console.log(makeObj('Jane',18));
+        */
+        /*
+        function divide(delimoe, delitel=2) {
+            return delimoe/delitel;
+        }
+        
+        console.log(divide(20,4));
+        console.log(divide(20));
+        console.log(divide());
+        */
+        /*
+        function func1(x=0) {
+            alert(x);
+            //return console.log;
+        }
+        
+        
+        function func(a, use) {
+            use(a);
+        }
+        
+        func(2, func1);
+        func(2, func1());
+        */
+        
+        function func(a, b, c) {
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+        
+        let ar = [1, 2, 3];
+        func(...ar);
+        
+        let q = 'asdfghj';
+        
+        console.log(...q);
+        
+    </script>
+</head>
+<body></body>
+</html>

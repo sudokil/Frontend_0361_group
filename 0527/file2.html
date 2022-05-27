@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Functions</title>
+    
+    <script>
+        /*
+        function outer() {
+            let arg = 1;
+            
+            function inner(){
+                console.log(arg++);
+            }
+            
+            return inner;
+        }
+        
+        let q = outer();
+        
+        let w = outer();
+        q();
+        q();
+        q();
+        q();
+        w();
+        w();
+        w();
+        */
+        
+        /*
+        !function(x){
+            console.log(x);
+        }('xxxx');
+        */
+        
+        function cnt(){
+            cnt.counter++;
+        }
+        cnt.counter = 0;
+        cnt();
+        cnt();
+        cnt();
+        cnt();
+        cnt();
+        cnt();
+        
+        console.log(cnt.counter);
+        
+    </script>
+</head>
+<body></body>
+</html>
