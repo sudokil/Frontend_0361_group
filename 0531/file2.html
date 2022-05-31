@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Classes</title>
+    
+    <script>
+        class Animal {
+            constructor(name, food) {
+                this.name = name;
+                this.food = food;
+            }
+            sound() {
+                if (this.name == 'cat') {return 'miau'} else {return 'gav'}
+            }
+        }
+        
+        let cat = new Animal('cat','meat');
+        let dog = new Animal('dog','meat');
+        
+        class Cow extends Animal {
+            constructor(name, food, productivity) {
+                super(name, food);
+                this.productivity = productivity;
+            }
+            sound() {
+                return 'muuu';
+            }
+        }
+        
+        let cow = new Cow('cow', 'grass', 'milk');
+        
+        
+        
+    </script>
+</head>
+<body></body>
+</html>

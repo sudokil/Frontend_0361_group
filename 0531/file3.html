@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Maximum</title>
+    
+    <script>
+        let arr = [1, 5, 2, 7, 29, 12, 33, 55];
+        
+        let max1 = arr[0];
+        
+        /*
+        for (i of arr) {
+            if (max1 < i) max1 = i;
+        }
+        */
+        for (let i = 1; i < arr.length; i++) {
+            if (max1 < arr[i]) max1 = arr[i];
+        }
+        
+        console.log(`max = ${max1}`);
+        
+        let max2 = -Infinity;
+        
+        /*
+        for (i of arr) {
+            if (max2 < i) max2 = i;
+        }
+        */
+        for (let i = 0; i < arr.length; i++) {
+            if (max2 < arr[i]) max2 = arr[i];
+        }
+        
+        console.log(`max = ${max2}`);
+        
+        let max3 = arr.reduce(function(previousValue, item) {
+            if (previousValue < item) {return item} else {return previousValue};
+        }, -Infinity);
+        
+        console.log(`max = ${max3}`);
+    </script>
+</head>
+<body></body>
+</html>

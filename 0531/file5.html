@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Maximum 2</title>
+    
+    <script>
+        let arr = [1, 5, 2, 0, 7, 29, 12, 33, 55];
+        
+        /*let max1 = arr[0];
+        let idx1 = 0;
+        
+        for (let i = 1; i < arr.length; i++) {
+            if (max1 < arr[i]) {
+                max1 = arr[i];
+                idx1 = i;
+            }
+        }
+        
+        arr.splice(idx1, 1);
+        
+        let max2 = arr[0];
+        let idx2 = 0;
+        
+        for (let i = 1; i < arr.length; i++) {
+            if (max2 < arr[i]) {
+                max2 = arr[i];
+                idx2 = i;
+            }
+        }*/
+        
+        let max1 = max2 = -Infinity;
+        
+        for (elt of arr) {
+            if (elt > max1) {
+                max2 = max1;
+                max1 = elt;
+            } else if (elt > max2) {
+                max2 = elt;
+            }
+        }
+        
+        console.log(`Два самых больших элемента массива: ${max1} и ${max2}`);
+    </script>
+    </script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Promices</title>
+    
+    <script>
+        let promise = new Promise(function(resolve, reject) {
+            let state = confirm();
+            
+            if (state) {
+                resolve(1001);
+            } else {
+                reject(418);
+            }
+        });
+        
+        //let promise = Promise.resolve(1001);
+        //let promise = Promise.reject(418);
+        
+        //let promise = Promise.all([Promise.resolve(1001), Promise.resolve(1001), Promise.resolve(1001)]);
+        //let promise = Promise.any([Promise.reject(1001), Promise.resolve(1001), Promise.reject(1001)]);
+        
+        promise.then(
+            function(result){
+                console.log('Получилось!!!')
+            }
+        ).then(
+            function(result){
+                console.log('+ Получилось!!!')
+            }
+        ).then(
+            function(result){
+                console.log('++ Получилось!!!')
+            }
+        ).then(
+            function(result){
+                console.log('+++ Получилось!!!')
+            }
+        ).then(
+            function(result){
+                console.log('++++ Получилось!!!')
+            }
+        ).catch(
+            function(error){
+                console.log('Не получилось...')
+            }
+        ).finally(
+            function(result){
+                console.log('А этот код выполняется всегда.')
+            }
+        );
+        
+        
+        
+    </script>
+    </script>
+</head>
+<body></body>
+</html>

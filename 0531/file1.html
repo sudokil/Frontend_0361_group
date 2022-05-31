@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Prototype</title>
+    
+    <script>
+        
+        function MyObj(name) {
+            this.name = name;
+        }
+        MyObj.prototype.sound = function() {
+            if (this.name == 'cat') {return 'miau'} else {return 'gav'}
+        }
+        
+        let a = new MyObj('cat');
+        
+        let b = new MyObj('dog');
+        
+        
+        
+        
+        
+        let animal = {
+            name: 'terion'
+        }
+        
+        let rabbit = {
+            name: 'rabbit'
+        }
+        
+        let cow = {
+            name: 'cow'
+        }
+        
+        rabbit.__proto__ = animal;
+        cow.__proto__ = rabbit;
+        
+        animal.eat = function(){
+            return 'grass';
+        }
+        
+        
+    </script>
+</head>
+<body></body>
+</html>
