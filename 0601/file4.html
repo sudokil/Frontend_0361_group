@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Стишок</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .outer {
+                height: 800px;
+                width: 800px;
+                position: relative;
+                margin: 100px auto;
+                background: pink;
+            }
+            
+            .inner {
+                height: 100px;
+                width: 100px;
+                position: absolute;
+                background: green;
+                top: 0;
+                left: 0;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="outer">
+            <div class="inner"></div>
+        </div>
+        
+        <script>
+            let outer = document.getElementsByClassName('outer')[0];
+            let inner = document.getElementsByClassName('inner')[0];
+            
+            console.log(inner.getBoundingClientRect());
+            
+            let start_x = inner.getBoundingClientRect().x;
+            let start_y = inner.getBoundingClientRect().y;
+            
+            let end_x = outer.getBoundingClientRect().width - inner.getBoundingClientRect().width;
+            let end_y = outer.getBoundingClientRect().height - inner.getBoundingClientRect().height;
+            
+            for (let q = 0; q <= end_x; q += 2) {
+                setTimeout(function(){
+                    inner.style.left = q + 'px';
+                    //console.log(q);
+                }, (q/2));
+            }
+            
+            for (let q = 0; q <= end_x; q += 2) {
+                setTimeout(function(){
+                    inner.style.top = q + 'px';
+                    //console.log(q);
+                }, (end_x + q/2));
+            }
+        </script>
+    </body>
+</html>

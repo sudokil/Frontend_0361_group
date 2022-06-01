@@ -1,0 +1,36 @@
+.querySelector()
+.querySelectorAll()[]
+.getElementsByTagName()[]
+.getElementsByClassName()[]
+
+.getElementsByName()[]
+
+document.getElementById()
+
+elem.closest()
+elem.parentNode
+elem.parentElement
+elem.childNodes[]
+elem.firstChild
+elem.lastChild
+...
+
+elem.matches()
+
+<html> = document.documentElement
+<head> = document.head
+<body> = document.body
+document.forms[]
+document.scripts[]
+document.images[]
+
+
+elem.getAttribute()
+elem.setAttribute()
+elem.removeAttribute()
+
+elem.getBoundingClientRect() -> top, y // left, x
+
+
+
+
