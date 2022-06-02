@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Events</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .calc {
+                display: grid;
+                width: 415px;
+                height: 380px;
+                background: pink;
+                border: 5px solid pink;
+                gap: 5px;
+                grid-template-columns: repeat(4, 100px);
+                grid-template-rows: repeat(6, 50px);
+                grid-template-areas: "s s s s" "s s s s" "b b b b" "b b b b" "b b b b" "b b b b" "b b b b";
+            }
+            .screen {
+                grid-area: s;
+                background: black;
+                color: #7f7;
+                font: 50px/85px Arial;
+                text-align: right;
+                padding: 10px;
+            }
+            .button {
+                background: gray;
+                color: white;
+                font: 30px/50px Arial;
+                text-align: center;
+                box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                border-radius: 5px;
+                user-select: none;
+            }
+            .button:hover {
+                cursor: pointer;
+            }
+            .button:active {
+                box-shadow: inset 1px 1px 5px rgba(0,0,0,0.5);
+            }
+            .digit, .nodigit {
+                background: white;
+                color: black;
+            }
+            .eval {
+                background: red;
+                color: yellow;
+            }
+            sup {
+                font-size: 15px;
+            }
+            span {
+                margin-top: -10px;
+                display: inline-block;
+            }
+            .clear {
+                color: red;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="calc">
+            <div class="screen" data-empty="1">0</div>
+            <div class="button function">1/x</div>
+            <div class="button function"><span>x<sup>2</sup></span></div>
+            <div class="button clear">C</div>
+            <div class="button action" data-action="divide">&divide;</div>
+            <div class="button digit">7</div>
+            <div class="button digit">8</div>
+            <div class="button digit">9</div>
+            <div class="button action" data-action="multiple">&times;</div>
+            <div class="button digit">4</div>
+            <div class="button digit">5</div>
+            <div class="button digit">6</div>
+            <div class="button action" data-action="minus">&minus;</div>
+            <div class="button digit">1</div>
+            <div class="button digit">2</div>
+            <div class="button digit">3</div>
+            <div class="button action" data-action="plus">&plus;</div>
+            <div class="button nodigit">+/-</div>
+            <div class="button digit">0</div>
+            <div class="button nodigit">.</div>
+            <div class="button eval">&equals;</div>
+        </div>
+        
+        <script>
+            let scr = document.querySelector('.screen');
+            let memory, action;
+            
+            
+            document.querySelectorAll('.button').forEach(btn => btn.addEventListener('click',function(e){
+                let btn = e.target;
+                if (btn.classList.contains('digit')) {
+                    if ((scr.getAttribute('data-empty') == 1) || (scr.innerHTML == 0)) {
+                        scr.innerHTML = e.target.innerHTML;
+                        scr.setAttribute('data-empty', 0);
+                    } else {
+                        if (scr.innerHTML.length < 14) scr.innerHTML += e.target.innerHTML;
+                    }
+                } else if (btn.classList.contains('clear')) {
+                    scr.innerHTML = 0;
+                    scr.setAttribute('data-empty', 1);
+                    memory = null;
+                    action = null;
+                } else if (btn.classList.contains('action')) {
+                    if (memory && action) {
+                        let line = +scr.innerHTML;
+                        switch (action) {
+                            case 'divide':
+                                memory = Math.floor(memory / line);
+                            break;
+                            case 'multiple':
+                                memory = memory * line;
+                            break;
+                            case 'minus':
+                                memory = memory - line;
+                            break;
+                            case 'plus':
+                                memory = memory + line;
+                            break;
+                        }
+                        scr.innerHTML = memory;
+                    } else {
+                        memory = +scr.innerHTML;
+                    }
+                    action = btn.getAttribute('data-action');
+                    scr.setAttribute('data-empty', 1);
+                } else if (btn.classList.contains('eval')) {
+                    if (memory && action) {
+                        let line = +scr.innerHTML;
+                        switch (action) {
+                            case 'divide':
+                                scr.innerHTML = Math.floor(memory / line);
+                            break;
+                            case 'multiple':
+                                scr.innerHTML = memory * line;
+                            break;
+                            case 'minus':
+                                scr.innerHTML = memory - line;
+                            break;
+                            case 'plus':
+                                scr.innerHTML = memory + line;
+                            break;
+                        }
+                        memory = null;
+                        action = null;
+                        scr.setAttribute('data-empty', 1);
+                    }
+                } else {
+                    console.log('this button is under construction');
+                }
+            }))
+        </script>
+    </body>
+</html>

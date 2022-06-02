@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Events</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .outer {
+                width: 600px;
+                height: 600px;
+                background: pink;
+                margin: 100px auto;
+                padding: 100px;
+            }
+            .middle {
+                width: 400px;
+                height: 400px;
+                background: green;
+                padding: 100px;
+            }
+            .inner {
+                width: 200px;
+                height: 200px;
+                background: blue;
+                padding: 100px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="outer">
+            <div class="middle">
+                <div class="inner"></div>
+            </div>
+        </div>
+        
+        <script>
+            /*document.querySelector('.outer').addEventListener('click', function(e){
+                console.log(e);
+                console.log(this);
+                console.log('погружение');
+            }, {capture: true});*/
+            /*document.querySelector('.middle').addEventListener('click', function(e){
+                console.log(e.target);
+                console.log(this);
+                //console.log('всплытие');
+                console.log(this === e.target);
+            }, {capture: false});
+            /*document.querySelector('.inner').addEventListener('click', function(e){
+                console.log(e);
+                console.log(this);
+                console.log('погружение');
+            }, {capture: true});*/
+            /*document.querySelector('.outer').addEventListener('click', function(e){
+                console.log(e.target);
+                console.log(this);
+                //console.log('всплытие');
+                console.log(this === e.target);
+            }, {capture: false});
+            /*document.querySelector('.middle').addEventListener('click', function(e){
+                console.log(e);
+                console.log(this);
+                console.log('погружение');
+            }, {capture: true});*/
+            /*document.querySelector('.inner').addEventListener('click', function(e){
+                console.log(e.target);
+                console.log(this);
+                //console.log('всплытие');
+                console.log(this === e.target);
+            }, {capture: false});*/
+            document.addEventListener('click', function(e){
+                console.log(e);
+            });
+            document.addEventListener('mousemove', function(e){
+                console.log(e);
+            });
+        </script>
+    </body>
+</html>

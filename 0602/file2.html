@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Events</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .outer {
+                width: 800px;
+                height: 800px;
+                background: pink;
+                margin: 100px auto;
+            }
+            .inner {
+                width: 100px;
+                height: 100px;
+                background: green;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="outer">
+            <div class="inner" onclick="console.log(this)"></div>
+        </div>
+        
+        <script>
+            /*
+            document.querySelector('.inner').onclick = function(e){
+                console.log(e);
+            };
+            */
+            document.querySelector('.inner').addEventListener('click', function(e){
+                console.log(e);
+            });
+            document.querySelector('.inner').addEventListener('click', function(e){
+                console.log(12345);
+            });
+            document.querySelector('.inner').addEventListener('click', function(e){
+                console.log('qqq');
+            });
+        </script>
+    </body>
+</html>

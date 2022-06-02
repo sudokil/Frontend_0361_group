@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Шахматы</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            #table {
+                border-collapse: collapse;
+                margin: 0 auto;
+                width: 500px;
+                display: table;
+            }
+            .tr {
+                display: table-row;
+            }
+            .td, .th {
+                display: table-cell;
+                vertical-align: middle;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                font-size: 30px;
+            }
+            .th {
+                background: lightgray;
+                color: blue;
+                font-weight: bold;
+            }
+            .odd .td:nth-child(odd),
+            .even .td:nth-child(even) {
+                background: white;
+                color: black;
+            }
+            .even .td:nth-child(odd),
+            .odd .td:nth-child(even) {
+                background: black;
+                color: white;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <script>
+            let q = document.createElement('div');
+            q.id = 'table';
+            q.insertAdjacentHTML('beforeend', '<div class="tr odd"></div><div class="tr even"></div>');
+            q.insertAdjacentHTML('beforeend', '<div class="tr odd"></div><div class="tr even"></div>');
+            q.insertAdjacentHTML('beforeend', '<div class="tr odd"></div><div class="tr even"></div>');
+            q.insertAdjacentHTML('beforeend', '<div class="tr odd"></div><div class="tr even"></div>');
+            let w = q.querySelector('.odd').cloneNode(true);
+            q.append(w);
+            w = q.querySelector('.even').cloneNode(true);
+            q.append(w);
+            //q.insertAdjacentHTML('beforeend', '<div class="tr odd"></div><div class="tr even"></div>');
+            let tr = q.querySelectorAll('.tr');
+            for (i of tr) {
+                for (let j = 0; j < 8; j++) {
+                    i.insertAdjacentHTML('beforeend', '<div class="td"></div>');
+                }
+                i.insertAdjacentHTML('afterbegin', '<div class="th"></div>');
+                i.insertAdjacentHTML('beforeend', '<div class="th"></div>');
+            }
+            let th1 = tr[0].querySelectorAll('.td')
+            let th2 = tr[9].querySelectorAll('.td')
+            for (let i = 0; i < 8; i++) {
+                th1[i].classList.remove('td');
+                th1[i].classList.add('th');
+                th2[i].classList.remove('td');
+                th2[i].classList.add('th');
+            }
+            document.body.insertAdjacentElement('beforeend', q);
+            /*
+            let str = '';
+            str += '<div id="table"><div class="tr odd"><div class="th"></div><div class="th"></div>';
+            str += '<div class="th"></div><div class="th"></div><div class="th"></div><div class="th">';
+            str += '</div><div class="th"></div><div class="th"></div><div class="th"></div><div class';
+            str += '="th"></div></div><div class="tr even"><div class="th"></div><div class="td"></div>';
+            str += '<div class="td"></div><div class="td"></div><div class="td"></div><div class="td">';
+            str += '</div><div class="td"></div><div class="td"></div><div class="td"></div><div class=';
+            str += '"th"></div></div><div class="tr odd"><div class="th"></div><div class="td"></div>';
+            str += '<div class="td"></div><div class="td"></div><div class="td"></div><div class="td">';
+            str += '</div><div class="td"></div><div class="td"></div><div class="td"></div><div class=';
+            str += '"th"></div></div><div class="tr even"><div class="th"></div><div class="td"></div>';
+            str += '<div class="td"></div><div class="td"></div><div class="td"></div><div class="td">';
+            str += '</div><div class="td"></div><div class="td"></div><div class="td"></div><div class=';
+            str += '"th"></div></div><div class="tr odd"><div class="th"></div><div class="td"></div>';
+            str += '<div class="td"></div><div class="td"></div><div class="td"></div><div class="td">';
+            str += '</div><div class="td"></div><div class="td"></div><div class="td"></div><div class=';
+            str += '"th"></div></div><div class="tr even"><div class="th"></div><div class="td"></div>';
+            str += '<div class="td"></div><div class="td"></div><div class="td"></div><div class="td">';
+            str += '</div><div class="td"></div><div class="td"></div><div class="td"></div><div class=';
+            str += '"th"></div></div><div class="tr odd"><div class="th"></div><div class="td"></div>';
+            str += '<div class="td"></div><div class="td"></div><div class="td"></div><div class="td">';
+            str += '</div><div class="td"></div><div class="td"></div><div class="td"></div><div class=';
+            str += '"th"></div></div><div class="tr even"><div class="th"></div><div class="td"></div>';
+            str += '<div class="td"></div><div class="td"></div><div class="td"></div><div class="td">';
+            str += '</div><div class="td"></div><div class="td"></div><div class="td"></div><div class=';
+            str += '"th"></div></div><div class="tr odd"><div class="th"></div><div class="td"></div>';
+            str += '<div class="td"></div><div class="td"></div><div class="td"></div><div class="td">';
+            str += '</div><div class="td"></div><div class="td"></div><div class="td"></div><div class=';
+            str += '"th"></div></div><div class="tr even"><div class="th"></div><div class="th"></div>';
+            str += '<div class="th"></div><div class="th"></div><div class="th"></div><div class="th">';
+            str += '</div><div class="th"></div><div class="th"></div><div class="th"></div><div class=';
+            str += '"th"></div></div></div>';
+            document.body.innerHTML = str;
+            */
+        </script>
+    </body>
+</html>

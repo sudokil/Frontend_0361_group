@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Events</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .outer {
+                width: 600px;
+                height: 600px;
+                background: pink;
+                margin: 100px auto;
+                padding: 100px;
+            }
+            .inner {
+                width: 100px;
+                height: 100px;
+                background: green;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="outer">
+            <div class="inner"></div>
+        </div>
+        
+        <script>
+            document.addEventListener('mousedown', function(event){
+                console.log(event.which + ' // ' + event.shiftKey + ' // ' + event.altKey + ' // ' + event.ctrlKey + ' // ' + event.metaKey + ' // ' + event.clientX + ' // ' + event.clientY + ' // ' + event.target.className);
+            });
+            document.querySelector('.inner').addEventListener('mouseenter', function(event){
+                console.log(event.clientX + ' ' + event.clientY + ' // ' + event.target.getBoundingClientRect().left + ' ' + event.target.getBoundingClientRect().top + ' // ' + event.target.getBoundingClientRect().right + ' ' + event.target.getBoundingClientRect().bottom);
+            });
+        </script>
+    </body>
+</html>

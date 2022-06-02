@@ -55,6 +55,20 @@
                     //console.log(q);
                 }, (end_x + q/2));
             }
+            
+            for (let q = end_x; q >= 0 ; q -= 2) {
+                setTimeout(function(){
+                    inner.style.left = q + 'px';
+                    //console.log(q);
+                }, (end_x*3 - q/2));
+            }
+            
+            for (let q = end_x; q >= 0; q -= 2) {
+                setTimeout(function(){
+                    inner.style.top = q + 'px';
+                    //console.log(q);
+                }, (end_x*4 - q/2));
+            }
         </script>
     </body>
 </html>

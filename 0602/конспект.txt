@@ -1,0 +1,44 @@
+node.append(...nodes or strings) – добавляет узлы или строки в конец node,
+node.prepend(...nodes or strings) – вставляет узлы или строки в начало node,
+node.before(...nodes or strings) –- вставляет узлы или строки до node,
+node.after(...nodes or strings) –- вставляет узлы или строки после node,
+node.replaceWith(...nodes or strings) –- заменяет node заданными узлами или строками.
+node.remove() -- удаляет node
+
+node.parentNode.removeChild(node) -- старый способ удаления
+parentElem.appendChild(node) -- старый способ вставки
+parentElem.insertBefore(node, nextSibling) -- старый способ вставки
+parentElem.replaceChild(node, oldChild) -- старый способ замены
+
+insertAdjacentHTML(where, html)
+insertAdjacentText(where, text)
+insertAdjacentElement(where, element)
+
+"beforebegin" – вставить непосредственно перед elem,
+"afterbegin" – вставить в начало elem,
+"beforeend" – вставить в конец elem,
+"afterend" – вставить непосредственно после elem.
+
+outerHTML - элемент в целом (innerHTML и сам тег)
+innerHTML - внутреннее содержимое элемента
+innerText - текст внутри элемента
+textContent - текст внутри элемента
+
+script можно вставлять только через .createElement - при вставке через innerHTML он не будет выполнен
+
+Вызов elem.cloneNode(true) создаёт «глубокий» клон элемента – со всеми атрибутами и дочерними элементами. Если мы вызовем elem.cloneNode(false), тогда клон будет без дочерних элементов.
+
+document.write
+
+on... -- обработчик события
+
+event.preventDefault() - отмена обработчика по умолчанию
+
+event.stopPropagation() - прекращение всплытия
+
+event.stopImmediatePropagation()
+
+
+
+
+
