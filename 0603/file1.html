@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Forms & Events</title>
+        
+        <meta charset="utf-8">
+    </head>
+    
+    <body>
+        <form>
+            <fieldset>
+                <input type="text" name="one" tabindex="1">
+            </fieldset>
+            <br>
+            <br>
+            <fieldset>
+                <input type="text" name="two" tabindex="2">
+            </fieldset>
+            <br>
+            <br>
+            <fieldset>
+                <input type="text" name="three" tabindex="2">
+            </fieldset>
+            <br>
+            <br>
+            <fieldset>
+                <input type="text" name="four" tabindex="1">
+            </fieldset>
+            
+            <input type="hidden" name="secret">
+            
+            <button type="submit">SUBMIT</button>
+        </form>
+        
+        <script>
+            document.forms[0].querySelectorAll('input').forEach(item => item.addEventListener('focus', function(){
+                console.log('focus '+this.name);
+            }));
+            
+            document.forms[0].querySelectorAll('input').forEach(item => item.addEventListener('blur', function(){
+                console.log('blur '+this.name);
+            }));
+            
+            document.forms[0].querySelectorAll('input').forEach(item => item.addEventListener('change', function(){
+                console.log('change '+this.name);
+            }));
+            
+            document.forms[0].querySelectorAll('input').forEach(item => item.addEventListener('input', function(){
+                console.log('input '+this.name);
+            }));
+            
+            document.forms[0].onsubmit = function(e){
+                let f = document.forms[0];
+                
+                if (!f.one.value) return false;
+                f.secret.value = 'secret';
+            };
+        </script>
+    </body>
+</html>

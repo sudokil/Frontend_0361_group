@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>DOMContentLoaded</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            div {
+                width: 800px;
+                height: 800px;
+                margin: 100px auto;
+                background: pink;
+            }
+            .red {
+                background: red;
+            }
+        </style>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                document.querySelector('div').onclick = function(){
+                    this.classList.toggle('red')
+                };
+            });
+            window.onload = function(){console.log('OK!')};
+        </script>
+    </head>
+    
+    <body>
+        <div></div>
+        <img src="Octocat_github.png" alt="">
+    </body>
+</html>
