@@ -29,18 +29,48 @@ const CHECKER = {
     king(a, b) {
         return (Math.abs(a.x - b.x) <= 1) && (Math.abs(a.y - b.y) <= 1);
     },
+    queen(a, b) { // TODO сделать проверку правильности хода
+        return true;
+    },
+    rook(a, b) { // TODO сделать проверку правильности хода
+        return true;
+    },
+    bishop(a, b) { // TODO сделать проверку правильности хода
+        return true;
+    },
     knight(a, b) {
         return ((Math.abs(a.x - b.x) == 1) && (Math.abs(a.y - b.y) == 2)) || ((Math.abs(a.x - b.x) == 2) && (Math.abs(a.y - b.y) == 1));
     },
-    // TODO добавить проверки для остальных фигур
+    pawn(a, b) { // TODO сделать проверку правильности хода
+        return true;
+    }
 };
 let figureset = [];
 let startPosition = [
     'king white e1',
     'king black e8',
-    'knight white g1'
-    /*'queen white d1',
+    'queen white d1',
     'queen black d8',
+    'rook white a1',
+    'rook white h1',
+    'rook black a8',
+    'rook black h8',
+    'bishop white c1',
+    'bishop white f1',
+    'bishop black c8',
+    'bishop black f8',
+    'knight white b1',
+    'knight white g1',
+    'knight black b8',
+    'knight black g8',
+    'pawn white a2',
+    'pawn white b2',
+    'pawn white c2',
+    'pawn white d2',
+    'pawn white e2',
+    'pawn white f2',
+    'pawn white g2',
+    'pawn white h2',
     'pawn black a7',
     'pawn black b7',
     'pawn black c7',
@@ -48,10 +78,8 @@ let startPosition = [
     'pawn black e7',
     'pawn black f7',
     'pawn black g7',
-    'pawn black h7'*/
-    // TODO сделать полный набор фигур для начала партии
+    'pawn black h7'
 ];
-
 
 /* functions */
 function getCellSelector(cellName, line=true) {
@@ -81,7 +109,6 @@ function checkMove(pos1, pos2, fig, beat=false) {
         // TODO расписать варианты для цветов, начального положения (двойной ход) и боя пешек (в том числе бой на проходе)
     } else if (fig.name == 'king') {
         // TODO расписать варианты для длинной и короткой рокировок.
-        // ВАЖНО!!! король и ладья не должны сделать ни одного хода перед рокировкой.
     }
     return action(a, b);
 }
@@ -89,13 +116,21 @@ function checkMove(pos1, pos2, fig, beat=false) {
 function ChessFigure(name, color, position) {
     this.name = name;
     this.color = color;
-    this.position = position;
+    this.position = position.toLowerCase();
+    this.nomoves = false;
     this.render = function(){
         document.querySelector(getCellSelector(this.position)).innerHTML = FIGURESYMBOL[this.name][this.color];
     };
     this.clear = function(){
         document.querySelector(getCellSelector(this.position)).innerHTML = '';
     };
+    if (this.name == 'king') {
+        if (((this.color == 'white') && (this.position == 'e1')) || ((this.color == 'black') && (this.position == 'e8'))) this.nomoves = true;
+    } else if (this.name == 'rook') {
+        if (((this.color == 'white') && (this.position in ['a1', 'h1'])) || ((this.color == 'black') && (this.position in ['a8', 'h8']))) this.nomoves = true;
+    } else if (this.name == 'pawn') {
+        if (((this.color == 'white') && (this.position in ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'])) || ((this.color == 'black') && (this.position in ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7']))) this.nomoves = true;
+    }
 }
 
 function makeFigure(name, color, position) {
@@ -131,10 +166,11 @@ function move(beat=false) {
     if (beat) {
         if (beatfig.color != fig.color) {
             if (checkMove(pos1, pos2, fig, true)) {
-                figureset.splice(figureset.indexOf(beatfig));
+                figureset.splice(figureset.indexOf(beatfig), 1);
                 fig.clear();
                 fig.position = pos2;
                 fig.render();
+                fig.nomoves = false;
             }
         }
     } else {
@@ -142,8 +178,10 @@ function move(beat=false) {
             fig.clear();
             fig.position = pos2;
             fig.render();
+            fig.nomoves = false;
         }
     }
+
 }
 
 /* main */

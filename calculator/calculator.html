@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
     <head>
         <title>Calculator</title>
@@ -188,7 +188,7 @@
             }
             
             function render(num) {
-                if (Math.abs(num) >= 100000000000000) {
+                if (isNaN(num) || (Math.abs(num) >= 100000000000000)) {
                     errorflag = true;
                     scr.innerHTML = 'ERROR!';
                 } else if (Math.abs(num) >= 1) {
@@ -196,7 +196,12 @@
                 } else if (Math.abs(num) >= 0.000001) {
                     scr.innerHTML = parseFloat(num.toFixed(12));
                 } else {
-                    scr.innerHTML = num.toFixed(12);
+                    num = num.toFixed(12);
+                    while (num.match(/^\d+\.\d*0$/)) {
+                        num = num.slice(0, -1);
+                    }
+                    if (num.match(/^\d+\.$/)) num = num.slice(0, -1);
+                    scr.innerHTML = num;
                 }
             }
         </script>

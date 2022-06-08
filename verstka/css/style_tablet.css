@@ -1,0 +1,45 @@
+﻿@media screen and (max-width: 1200px) {
+    .container {
+        width: 704px;
+    }
+    header {
+        top: 47px;
+    }
+    footer .container {
+        padding: 64px 92px;
+        box-sizing: border-box;
+    }
+    footer h3 {
+        margin: -16px 0 32px;
+    }
+    footer p {
+        width: 336px;
+        margin: 0;
+    }
+    footer button {
+        margin-top: -115px;
+        width: 134px;
+        height: 32px;
+    }
+    /*
+    footer ol {
+        flex-direction: column;
+        height: 130px;
+    }
+    footer li {
+        flex-basis: 26px;
+    }
+    */
+    footer ol {
+        display: block;
+    }
+    footer li {
+        padding-left: 59px;
+    }
+    footer li + li {
+        margin-top: 26px;
+    }
+    footer li br {
+        display: none;
+    }
+}

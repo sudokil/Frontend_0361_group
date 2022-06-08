@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>jQuery Calculator</title>
+        
+        <meta charset="utf-8">
+        
+        <style>
+            .calc {
+                display: grid;
+                width: 415px;
+                height: 380px;
+                background: pink;
+                border: 5px solid pink;
+                gap: 5px;
+                grid-template-columns: repeat(4, 100px);
+                grid-template-rows: repeat(6, 50px);
+                grid-template-areas: "s s s s" "s s s s" "b b b b" "b b b b" "b b b b" "b b b b" "b b b b";
+            }
+            .screen {
+                grid-area: s;
+                background: black;
+                color: #7f7;
+                font: 50px/85px Arial;
+                text-align: right;
+                padding: 10px;
+            }
+            .button {
+                background: gray;
+                color: white;
+                font: 30px/50px Arial;
+                text-align: center;
+                box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+                border-radius: 5px;
+                user-select: none;
+            }
+            .button:hover {
+                cursor: pointer;
+            }
+            .button:active {
+                box-shadow: inset 1px 1px 5px rgba(0,0,0,0.5);
+            }
+            .digit, .sign, .point {
+                background: white;
+                color: black;
+            }
+            .eval {
+                background: red;
+                color: yellow;
+            }
+            sup {
+                font-size: 15px;
+            }
+            span {
+                margin-top: -10px;
+                display: inline-block;
+            }
+            .clear {
+                color: red;
+                font-weight: bold;
+            }
+        </style>
+        
+        <script src="jquery-3.6.0.min.js"></script>
+        
+        <script>
+            let errorflag = false;
+            let emptyflag = true;
+            let memory = null;
+            let action = null;
+            
+            function render(num) {
+                if (isNaN(num) || (Math.abs(num) >= 100000000000000)) {
+                    errorflag = true;
+                    $('.screen').html('ERROR!');
+                } else if (Math.abs(num) >= 1) {
+                    $('.screen').html(parseFloat(num.toPrecision(13)));
+                } else if (Math.abs(num) >= 0.000001) {
+                    $('.screen').html(parseFloat(num.toFixed(12)));
+                } else {
+                    num = num.toFixed(12);
+                    while (num.match(/^\d+\.\d*0$/)) {
+                        num = num.slice(0, -1);
+                    }
+                    if (num.match(/^\d+\.$/)) num = num.slice(0, -1);
+                    $('.screen').html(num);
+                }
+            }
+            
+            function evaluate() {
+                switch (action) {
+                    case 'divide':
+                        render(memory / +$('.screen').html());
+                    break;
+                    case 'multiple':
+                        render(memory * +$('.screen').html());
+                    break;
+                    case 'minus':
+                        render(memory - +$('.screen').html());
+                    break;
+                    case 'plus':
+                        render(memory + +$('.screen').html());
+                    break;
+                }
+            }
+            
+            $(function() {
+                $('.button').click(function(e) {
+                    if ($(this).hasClass('clear')) {
+                        $('.screen').html(0);
+                        memory = null;
+                        action = null;
+                        emptyflag = true;
+                        errorflag = false;
+                    } else if (!errorflag) {
+                        if ($(this).hasClass('square')) {
+                            render(+$('.screen').html() * +$('.screen').html());
+                        } else if ($(this).hasClass('oneonx')) {
+                            render(1 / +$('.screen').html());
+                        } else if ($(this).hasClass('sign')) {
+                            if ($('.screen').html().includes('-')) {
+                                $('.screen').html($('.screen').html().slice(1));
+                            } else {
+                                $('.screen').html('-' + $('.screen').html());
+                            }
+                        } else if ($(this).hasClass('point')) {
+                            if (emptyflag || ($('.screen').html() == '0')) {
+                                $('.screen').html('0.');
+                                emptyflag = false;
+                            } else {
+                                if (!$('.screen').html().includes('.')) {
+                                    $('.screen').html($('.screen').html() + '.');
+                                }
+                            }
+                        } else if ($(this).hasClass('eval')) {
+                            if ((memory !== null) && action) {
+                                evaluate();
+                                memory = null;
+                                action = null;
+                                emptyflag = true;
+                            }
+                        } else if ($(this).hasClass('action')) {
+                            if ((memory !== null) && action) {
+                                evaluate();
+                            }
+                            memory = +$('.screen').html();
+                            action = e.target.getAttribute('data-action');
+                            emptyflag = true;
+                        } else if ($(this).hasClass('digit')) {
+                            if (emptyflag || ($('.screen').html() == '0')) {
+                                $('.screen').html(e.target.innerHTML);
+                                emptyflag = false;
+                            } else {
+                                if ($('.screen').html().replace(/\D/g, '').length < 13) {
+                                    $('.screen').html($('.screen').html() + e.target.innerHTML);
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </head>
+    
+    <body>
+        <div class="calc">
+            <div class="screen">0</div>
+            <div class="button oneonx">1/x</div>
+            <div class="button square"><span>x<sup>2</sup></span></div>
+            <div class="button clear">C</div>
+            <div class="button action" data-action="divide">&divide;</div>
+            <div class="button digit">7</div>
+            <div class="button digit">8</div>
+            <div class="button digit">9</div>
+            <div class="button action" data-action="multiple">&times;</div>
+            <div class="button digit">4</div>
+            <div class="button digit">5</div>
+            <div class="button digit">6</div>
+            <div class="button action" data-action="minus">&minus;</div>
+            <div class="button digit">1</div>
+            <div class="button digit">2</div>
+            <div class="button digit">3</div>
+            <div class="button action" data-action="plus">&plus;</div>
+            <div class="button sign">+/-</div>
+            <div class="button digit">0</div>
+            <div class="button point">.</div>
+            <div class="button eval">&equals;</div>
+        </div>
+    </body>
+</html>
