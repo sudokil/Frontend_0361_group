@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Blocking</title>
+    
+    <style>
+        button {
+            display: block;
+            margin: 200px auto;
+            background: pink;
+            color: red;
+            width: 200px;
+            height: 100px;
+            font: bold 30px/100px Arial;
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <button>Click me!</button>
+    
+    <script>
+        let semafor = false;
+        
+        function btnmove(e){
+            if (semafor) {
+                console.log('blocked!!!');
+                return;
+            }
+            semafor = true;
+            for (let i = 0; i < 20; i++) {
+                setTimeout(function(){console.log(i)}, i*1000);
+            }
+            setTimeout(function(){semafor = false;}, 20000)
+        }
+        
+        document.querySelector('button').addEventListener('click', btnmove);
+    </script>
+</body>
+</html>

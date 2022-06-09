@@ -42,18 +42,14 @@ body {
 
 /* icons */
 .icon::before {
-    font: normal 16px/24px 'icomoon';
+    font-family: 'icomoon';
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
     color: white;
     text-align: center;
 }
-header .icon::before {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    right: 4px;
-    bottom: 4px;
-}
-header .icon:hover::before {
+.icon:hover::before {
     color: yellow;
 }
 .logo::before {
@@ -64,6 +60,9 @@ header .icon:hover::before {
 }
 .order::before {
     content: '\e901';
+}
+.cat::before {
+    content: '\e903';
 }
 
 /* header */
@@ -107,11 +106,18 @@ header nav a {
     padding: 4px 8px;
     color: white;
 }
-header a.current,
+header a.active,
 header a:hover {
     color: yellow;
     border-color: yellow;
     background: pink;
+}
+header .icon::before {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
 }
 
 /* footer */
@@ -125,3 +131,202 @@ footer {
 main {
     flex: 1 1 auto;
 }
+
+/* actions */
+.actionband {
+    background: #f93;
+    color: #fff;
+    text-transform: uppercase;
+}
+.actionband .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.discount,
+.retaimer,
+.sept,
+.num {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 1;
+}
+.toptext,
+.subnum {
+    font-size: 12px;
+}
+.retaimer {
+    border-left: 1px solid #fff;
+    padding: 24px 0 0 24px;
+    margin-left: 24px;
+    position: relative;
+    text-align: center;
+}
+.toptext {
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 0;
+}
+.sept,
+.num {
+    display: inline-block;
+    vertical-align: top;
+}
+.sept {
+    padding: 12px 0;
+}
+.num {
+    padding-bottom: 24px;
+    position: relative;
+    min-width: 50px;
+}
+.subnum {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* slider */
+.slider .container,
+.slider_desk,
+.slider_block {
+    width: 417px;
+    height: 570px;
+}
+.slider .container {
+    padding: 16px 78px;
+    position: relative;
+}
+.slider_desk {
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+}
+.slider_block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.slider_block.active {
+	z-index: 1;
+}
+/* .slider button { */
+	/* position: absolute; */
+	/* background: green; */
+	/* color: white; */
+	/* border: none; */
+	/* border-radius: 4px; */
+	/* font-size: 32px; */
+	/* line-height: 46px; */
+	/* height: 46px; */
+	/* width: 46px; */
+	/* top: calc(50% - 23px); */
+/* } */
+/* .slider .to_left { */
+	/* left: 16px; */
+/* } */
+/* .slider .to_right { */
+	/* right: 16px; */
+/* } */
+/* .slider .points { */
+	/* position: absolute; */
+	/* width: 66px; */
+	/* height: 12px; */
+	/* display: flex; */
+	/* justify-content: space-between; */
+	/* top: 500px; */
+	/* left: 50%; */
+	/* margin-left: -33px; */
+/* } */
+/* .slider .points span { */
+	/* border-radius: 50%; */
+	/* border: 1px solid blue; */
+	/* height: 12px; */
+	/* width: 12px; */
+	/* cursor: pointer; */
+	/* z-index: 1; */
+/* } */
+/* .slider .points span:hover, */
+/* .slider .points span.active { */
+	/* background: blue; */
+/* } */
+
+/* catalog */
+.catalog .container {
+    overflow: hidden;
+    padding: 0;
+}
+.catalog aside {
+    float: left;
+    width: 288px;
+    padding: 16px;
+}
+.catalog article {
+    margin-left: 320px;
+    padding: 16px;
+}
+.opener {
+    font-size: 32px;
+    line-height: 48px;
+    padding: 16px 16px 16px 80px;
+    background: #ff2780;
+    color: white;
+    cursor: pointer;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    position: relative;
+}
+.opener::before,
+.opener::after {
+    position: absolute;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+    content: '';
+}
+.opener::before {
+    top: 16px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    height: 21px;
+    transform-origin: left top;
+    transition: border-bottom-width 1.4s step-end, transform 1.5s ease, width 1.5s ease;
+}
+.opener::after {
+    top: 41px;
+    border-bottom: 2px solid white;
+    height: 21px;
+    transform-origin: left bottom;
+    transition: transform 1.5s ease, width 1.5s ease;
+}
+.opener:hover,
+.opener:hover::before,
+.opener:hover::after,
+.opener:hover span::before {
+    color: yellow;
+    border-color: yellow;
+}
+.open .opener::before,
+.open .opener::after {
+    width: 66px;
+}
+.open .opener::before {
+    border-bottom-width: 0;
+    transform: rotate(45deg);
+    transition: border-bottom-width 1.4s step-start, transform 1.5s ease, width 1.5s ease;
+}
+.open .opener::after {
+    transform: rotate(-45deg);
+}
+.accordeon {
+    display: none;
+}
+.open .accordeon {
+    display: block;
+}
+
+
+
