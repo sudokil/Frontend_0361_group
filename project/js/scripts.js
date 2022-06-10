@@ -1,7 +1,6 @@
 let slideFlag = {};
 let slidePointer = {};
-
-
+let galFlag = false;
 
 function retimer() {
     let limit = new Date($('.retaimer').data('fordate'));
@@ -51,9 +50,12 @@ function sliderRun(slideclass, direction) {
         if (next < 0) next += $(selector).length;
         anim = '+=' + width;
         width = -width;
-    } else {
+    } else if (direction == 'toleft') {
         next = slidePointer[slideclass] + 1;
         if (next > $(selector).length - 1) next -= $(selector).length;
+        anim = '-=' + width;
+    } else {
+        next = direction;
         anim = '-=' + width;
     }
     slidePointer[slideclass] = next;
@@ -61,6 +63,65 @@ function sliderRun(slideclass, direction) {
     $(selector).eq(next).css('left', width + 'px').addClass('active');
     $(selector + '.active').animate({left: anim}, 1000, function() {
         $(selector + '.eliminate').removeClass('active').removeClass('eliminate');
+        $('.slider_points span').removeClass('active').eq(next).addClass('active');
         slideFlag[slideclass] = false;
     });
 }
+
+function lightbox(aim){
+    let src = $(aim).attr('src').split('/');
+    src = src[0] + '/big_' + src[1];
+    let w = document.documentElement.clientWidth - 64;
+    let h = document.documentElement.clientHeight - 64;
+    let sides = aim.clientWidth / aim.clientHeight;
+    if (w > sides * h) {
+        w = sides * h;
+    } else if (w < sides * h) {
+        h = Math.floor(w / sides);
+    }
+    let topfix = h / 2 + 16;
+    let leftfix = w / 2 + 16;
+    hlpstr = '<div class="lightbox" style="margin-left:-' + leftfix + 'px;margin-top:-' + topfix + 'px;"><button type="button">&times;</button><img src="' + src + '" style="width:' + w + 'px;height:' + h + 'px;"></div>';
+    $('body').append('<div class="screen"></div>');
+    $('body').append(hlpstr);
+    $('.lightbox button, .screen').click(function(){
+        $('.lightbox').animate({opacity:0}, 500, function(){
+            $('.lightbox').remove();
+            $('.screen').remove();
+        });
+    });
+    $('.lightbox').animate({opacity:1}, 500);
+}
+
+function galSlide(direction) {
+    if (galFlag) return;
+    galFlag = true;
+    let hlpstr = parseInt($('.rail').css('left'));
+    if (direction == 'left') {
+        hlpstr -= 60;
+    } else {
+        hlpstr += 60;
+    }
+    $('.rail').animate({
+        left: hlpstr
+    }, 500, function(){
+        let l = parseInt($('.rail').css('left'));
+        if (l == 0) {
+            $('.gal_right').addClass('disabled');
+        } else {
+            $('.gal_right').removeClass('disabled');
+        }
+        if ($('.rail').width() + l == 410) {
+            $('.gal_left').addClass('disabled');
+        } else {
+            $('.gal_left').removeClass('disabled');
+        }
+        galFlag = false;
+    });
+}
+
+
+
+
+
+
