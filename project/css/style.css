@@ -518,6 +518,66 @@ main {
     color: yellow;
 }
 
+/* order */
+.table div {
+    font-size: 24px;
+    line-height: 48px;
+}
+.tr {
+    display: grid;
+    grid-template-columns: 5% 30% 20% 20% 20% 5%;
+}
+.tr.top {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+.tr.bottom {
+    font-weight: bold;
+    border-top: 1px solid black;
+}
+.table .price {
+    font-weight: normal;
+    color: black;
+}
+.table .top .price {
+    font-weight: bold;
+}
+.table .price::after,
+.table .summa::after,
+.table .itog::after {
+	content: '\0020\20BD';
+}
+.bottom .text {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.bottom .itog {
+    grid-column-start: 5;
+    grid-column-end: 6;
+}
+.table button {
+    font-size: 24px;
+    line-height: 48px;
+    width: 48px;
+    cursor: pointer;
+    flex: none;
+}
+.table button:active {
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+}
+.quantity {
+    display: flex;
+    padding-right: 48px;
+    gap: 16px;
+}
+.quantity span {
+    flex: auto;
+    text-align: center;
+}
+
+
+
 
 
 

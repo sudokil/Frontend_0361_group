@@ -14,6 +14,29 @@
     <script src="js/scripts.js"></script>
     
     <script src="js/main.js"></script>
+    
+    <script>
+        let tovardata = [
+            {
+                id: 1,
+                qty: 2,
+                name: 'Капибара 1',
+                price: 150000,
+            },
+            {
+                id: 2,
+                qty: 10,
+                name: 'Капибара 10',
+                price: 1000,
+            },
+            {
+                id: 5,
+                qty: 1,
+                name: 'Капибара 11',
+                price: 5000000,
+            },
+        ];
+    </script>
 </head>
 <body>
     <header>
@@ -42,7 +65,15 @@
     </header>
     
     <main>
-        CONTENT
+        <div class="container">
+            <h1>Корзина</h1>
+            
+            <div class="table"></div>
+            
+            <div class="form"></div>
+            
+            <div id="currency"></div>
+        </div>
     </main>
     
     <footer>

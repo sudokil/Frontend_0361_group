@@ -69,7 +69,34 @@ $(function(){
         });
     }
     
-    
+    if ($('.table').length) {
+        writeTable();
+        $(document).on('click', '.quantity button:first-child', function(){
+            let id = $(this).parents('.tr').find('.id').prop('id').slice(6);
+            for (item of tovardata) {
+                if (item.id == id) {
+                    item.qty--;
+                    if (item.qty <= 0) removeTovar(id);
+                    break;
+                }
+            }
+            writeTable();
+        })
+        $(document).on('click', '.quantity button:last-child', function(){
+            let id = $(this).parents('.tr').find('.id').prop('id').slice(6);
+            for (item of tovardata) {
+                if (item.id == id) {
+                    item.qty++;
+                    break;
+                }
+            }
+            writeTable();
+        })
+        $(document).on('click', '.delete button', function(){
+            let id = $(this).parents('.tr').find('.id').prop('id').slice(6);
+            if (removeTovar(id)) writeTable();
+        })
+    }
     
     
     

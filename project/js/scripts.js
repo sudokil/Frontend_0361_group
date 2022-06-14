@@ -120,8 +120,32 @@ function galSlide(direction) {
     });
 }
 
+function writeTable() {
+    // проверяем длину tovardata. если там пусто, удаляем .table и .form, добавляем .empty с текстом "Ваша корзина пуста".
+    if (!tovardata.length) {
+        $('.table, .form').remove();
+        $('h1').after('<div class="empty">Ваша корзина пуста!</div>');
+        return;
+    }
+    let tab = $('.table');
+    let hlpstr = '<div class="tr top"><div class="id">№</div><div class="name">Наименование</div><div class="price">Цена</div><div class="quantity">Количество</div><div class="summa">Сумма</div><div class="delete"></div></div>';
+    let sum = 0;
+    for (item of tovardata) {
+        sum += (item.qty * item.price);
+        hlpstr += '<div class="tr"><div class="id" id="tovar_' + item.id + '">1</div><div class="name">' + item.name + '</div><div class="price">' + item.price + '</div><div class="quantity"><button type="button">&minus;</button><span class="number">' + item.qty + '</span><button type="button">&plus;</button></div><div class="summa">' + (item.qty * item.price) + '</div><div class="delete"><button type="button">&times;</button></div></div>';
+    }
+    hlpstr += '<div class="tr bottom"><div class="text">Итого:</div><div class="itog">' + sum + '</div></div>';
+    tab.html(hlpstr);
+}
 
-
-
+function removeTovar(id) {
+    for (let i = 0; i < tovardata.length; i++) {
+        if (tovardata[i].id == id) {
+            tovardata.splice(i, 1);
+            return true;
+        }
+    }
+    return false;
+}
 
 
