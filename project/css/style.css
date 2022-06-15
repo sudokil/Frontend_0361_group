@@ -495,8 +495,10 @@ main {
     cursor: pointer;
 }
 
-/* lightbox */
-.lightbox {
+/* popups */
+.lightbox,
+.calendarbox,
+.alertbox {
     position: fixed;
     left: 50%;
     top: 50%;
@@ -505,7 +507,18 @@ main {
     background: white;
     opacity: 0;
 }
-.lightbox button {
+.alertbox {
+    width: 360px;
+    height: 60px;
+    margin: -46px auto auto -196px;
+}
+.calendarbox {
+    width: 398px;
+    margin: -215px auto auto -215px;
+}
+.lightbox button,
+.calendarbox button,
+.alertbox button {
     position: absolute;
     top: 32px;
     right: 32px;
@@ -514,9 +527,52 @@ main {
     line-height: 37px;
     cursor: pointer;
 }
-.lightbox button:hover {
+.lightbox button:hover,
+.calendarbox button:hover,
+.alertbox button:hover {
     color: yellow;
 }
+.calendarbox span {
+    flex: none;
+    height: 48px;
+    width: 48px;
+    display: block;
+    line-height: 48px;
+    text-align: center;
+    border: 1px solid gray;
+    color: gray;
+}
+.calendarbox strong {
+    flex: auto;
+    line-height: 48px;
+    text-align: center;
+    color: gray;
+}
+.calendarbox .dp_header {
+    display: flex;
+    height: 48px;
+    width: 398px;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.calendarbox .dp_grid {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(7, 50px);
+}
+.calendarbox .holiday {
+    color: red;
+    border-color: red;
+}
+.calendarbox .headday {
+    border-color: transparent;
+    font-weight: bold;
+}
+.calendarbox .empty {
+    border-color: transparent;
+}
+
+
 
 /* order */
 .table div {
@@ -575,9 +631,47 @@ main {
     flex: auto;
     text-align: center;
 }
-
-
-
+.currency {
+    margin-top: 16px;
+}
+fieldset {
+    margin: 16px 0;
+    border: 2px solid red;
+    padding: 16px;
+}
+legend {
+    font-weight: bold;
+    color: red;
+}
+input {
+    display: block;
+    margin-top: 16px;
+    border: 1px solid gray;
+    padding: 16px;
+    color: gray;
+    height: 30px;
+    width: 250px;
+}
+textarea {
+    display: block;
+    margin-top: 16px;
+    border: 1px solid gray;
+    padding: 16px;
+    color: gray;
+    height: 60px;
+    width: 250px;
+}
+legend + input {
+    margin: 0;
+}
+.sendform {
+    display: block;
+    width: 200px;
+    padding: 16px;
+    background: red;
+    color: white;
+    cursor: pointer;
+}
 
 
 

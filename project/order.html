@@ -36,6 +36,10 @@
                 price: 5000000,
             },
         ];
+        if (localStorage.getItem('addTovar')) {
+            tovardata.push(JSON.parse(localStorage.getItem('addTovar')));
+            localStorage.removeItem('addTovar');
+        }
     </script>
 </head>
 <body>
@@ -70,9 +74,33 @@
             
             <div class="table"></div>
             
-            <div class="form"></div>
+            <div class="form">
+                <form action="https://jsonplaceholder.typicode.com/posts" method="POST" name="orderform">
+                    <fieldset>
+                        <legend>Данные получателя:</legend>
+                        
+                        <input type="text" name="name" id="name" placeholder="Имя">
+                        
+                        <input type="text" name="phone" id="phone" placeholder="Телефон">
+                        
+                        <input type="text" name="mail" id="mail" placeholder="Почта">
+                        
+                        <textarea name="comment" id="comment"></textarea>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>Дата доставки:</legend>
+                        
+                        <input type="text" name="date" id="date" placeholder="ДД-ММ-ГГГГ" autocomplete="off">
+                    </fieldset>
+                        
+                    <button type="submit" class="sendform">Отправить</button>
+                </form>
+            </div>
             
-            <div id="currency"></div>
+            <div id="currency1" class="currency"></div>
+            <div id="currency2" class="currency"></div>
+            <div id="currency3" class="currency"></div>
         </div>
     </main>
     

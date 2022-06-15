@@ -70,6 +70,9 @@ $(function(){
     }
     
     if ($('.table').length) {
+        getCurrency1();
+        getCurrency2();
+        getCurrency3();
         writeTable();
         $(document).on('click', '.quantity button:first-child', function(){
             let id = $(this).parents('.tr').find('.id').prop('id').slice(6);
@@ -81,7 +84,7 @@ $(function(){
                 }
             }
             writeTable();
-        })
+        });
         $(document).on('click', '.quantity button:last-child', function(){
             let id = $(this).parents('.tr').find('.id').prop('id').slice(6);
             for (item of tovardata) {
@@ -91,11 +94,18 @@ $(function(){
                 }
             }
             writeTable();
-        })
+        });
         $(document).on('click', '.delete button', function(){
             let id = $(this).parents('.tr').find('.id').prop('id').slice(6);
             if (removeTovar(id)) writeTable();
-        })
+        });
+        $('.form form').submit(function(e){
+            e.preventDefault();
+            formValidate(this);
+        });
+        $('#date').focus(function(){
+            getCalendar($('#date').val());
+        });
     }
     
     

@@ -1,6 +1,7 @@
 let slideFlag = {};
 let slidePointer = {};
 let galFlag = false;
+const russMonth = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
 
 function retimer() {
     let limit = new Date($('.retaimer').data('fordate'));
@@ -68,7 +69,7 @@ function sliderRun(slideclass, direction) {
     });
 }
 
-function lightbox(aim){
+function lightbox(aim) {
     let src = $(aim).attr('src').split('/');
     src = src[0] + '/big_' + src[1];
     let w = document.documentElement.clientWidth - 64;
@@ -121,7 +122,6 @@ function galSlide(direction) {
 }
 
 function writeTable() {
-    // проверяем длину tovardata. если там пусто, удаляем .table и .form, добавляем .empty с текстом "Ваша корзина пуста".
     if (!tovardata.length) {
         $('.table, .form').remove();
         $('h1').after('<div class="empty">Ваша корзина пуста!</div>');
@@ -148,4 +148,150 @@ function removeTovar(id) {
     return false;
 }
 
+function getCurrency1() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://www.cbr-xml-daily.ru/daily_json.js');
+    xhr.onreadystatechange = function() {
+        if ((xhr.readyState == 4) && (xhr.status == 200)) {
+            $('#currency1').html(JSON.parse(xhr.response).Valute.USD.Value.toFixed(2) + ' рублей за доллар');
+        }
+    };
+    xhr.send();
+}
 
+function getCurrency2() {
+    $.get('https://www.cbr-xml-daily.ru/daily_json.js', function(response){
+        $('#currency2').html(JSON.parse(response).Valute.USD.Value.toFixed(2) + ' рублей за доллар');
+    });
+}
+
+function getCurrency3() {
+    fetch("https://www.cbr-xml-daily.ru/daily_json.js").then(response => response.json()).then(response => $('#currency3').html(response.Valute.USD.Value.toFixed(2) + ' рублей за доллар'));
+}
+
+function formValidate(form) {
+    let name = $('#name').val();
+    if (!name) {
+        alert('Не заполнено имя!');
+        return false;
+    }
+    let phone = $('#phone').val();
+    if (!phone.match(/^((\+7)|(8))?\s?\(?\d{3}\)?\s?\d{3}\-?\d{2}\-?\d{2}$/)) {
+        alert('Не заполнен номер телефона!');
+        return false;
+    }
+    let mail = $('#mail').val();
+    if (!mail.match(/^.+@.+\..+$/)) {
+        alert('Не заполнен адрес почты!');
+        return false;
+    }
+    let date = $('#date').val();
+    if (!date.match(/^\d{2}\-\d{2}\-\d{4}$/)) {
+        alert('Не выбрана дата!');
+        return false;
+    }
+    let comment = $('#comment').val();
+    let formData = {
+        name,
+        phone,
+        mail,
+        date,
+        comment
+    }
+    $.ajax({
+        url: 'https://jsonplaceholder.typicode.com/posts',
+        data: formData,
+        method: 'POST',
+        success: function(response) {
+            makeAlert(response);
+        }
+    });
+}
+
+function makeAlert(response) {
+    let hlpstr = '<div class="alertbox"><button type="button">&times;</button><p>Ваш заказ оформлен под номером ' + response.id + '.</p></div>';
+    $('body').append('<div class="screen"></div>');
+    $('body').append(hlpstr);
+    $('.alertbox button, .screen').click(function(){
+        $('.alertbox').animate({opacity:0}, 500, function(){
+            location.reload(true);
+        });
+    });
+    $('.alertbox').animate({opacity:1}, 500);
+}
+
+function makeCalendar(fieldDate) {
+    let hlpdate = new Date();
+    let curyear, curmonth, curday;
+    if (fieldDate.match(/^\d{2}\-\d{2}\-\d{4}$/)) {
+        [curday, curmonth, curyear] = fieldDate.split('-');
+        curmonth--;
+        hlpdate = new Date(curyear, curmonth, curday);
+    }
+    curyear = hlpdate.getFullYear();
+    curmonth = hlpdate.getMonth();
+    curday = hlpdate.getDate();
+    /*
+    if (fieldDate.match(/^\d{2}\-\d{2}\-\d{4}$/)) {
+        [curday, curmonth, curyear] = fieldDate.split('-');
+        curmonth--;
+        if ((curday < 1) || (curmonth < 0) || (curyear < 2020) || (curmonth > 11) || (curyear > 2023) || (curday > 31) || ((curmonth in [3, 5, 8, 10]) && (curday > 30)) || ((curmonth == 1) && ((curyear % 400 == 0) || ((curyear % 4 == 0) && (curyear % 100 != 0))) && (curday > 29)) || ((curmonth == 1) && (curday > 28))) {
+            curyear = now.getFullYear();
+            curmonth = now.getMonth();
+            curday = now.getDate();
+        }
+    }
+    */
+    hlpdate = new Date(curyear, curmonth);
+    let prevdays = ((hlpdate.getDay() + 6) % 7); // пн - 0, вт - 1 ... сб - 5, вс - 6
+    hlpdate = new Date(curyear, curmonth + 1, 0);
+    let lastday = hlpdate.getDate() + prevdays; // последний день месяца + дни до начала месяца
+    let weeks = Math.ceil(lastday / 7);
+    let hlpstr = '<div class="dp_header"><span class="bigprev"><<</span><span class="prev"><</span><strong>' + russMonth[curmonth] + ' ' + curyear + '</strong><span class="next">></span><span class="bignext">>></span></div>';
+    hlpstr += '<div class="dp_grid"><span class="headday">Пн</span><span class="headday">Вт</span><span class="headday">Ср</span><span class="headday">Чт</span><span class="headday">Пт</span><span class="headday holiday">Сб</span><span class="headday holiday">Вс</span>';
+    for (let i = 0; i < weeks * 7; i++) {
+        if ((i >= prevdays) && (i < lastday)) {
+            let getdate = addChar(i - prevdays + 1) + '-' + addChar(curmonth + 1) + '-' + curyear;
+            hlpstr += '<span class="getter';
+            if ((i % 7 == 5) || (i % 7 == 6)) hlpstr += ' holiday';
+            hlpstr += '" data-get="' + getdate + '">' + (i - prevdays + 1) + '</span>';
+        } else {
+            hlpstr += '<span class="empty"></span>';
+        }
+    }
+    hlpstr += '</div>';
+    $('#calendar').html(hlpstr);
+    $('#calendar .prev').click(function(){
+        makeCalendar(`01-${addChar(curmonth)}-${curyear}`);
+    })
+    $('#calendar .next').click(function(){
+        makeCalendar(`01-${addChar(curmonth + 2)}-${curyear}`);
+    })
+    $('#calendar .bigprev').click(function(){
+        makeCalendar(`01-${addChar(curmonth + 1)}-${curyear - 1}`);
+    })
+    $('#calendar .bignext').click(function(){
+        makeCalendar(`01-${addChar(curmonth + 1)}-${curyear + 1}`);
+    })
+    $('#calendar .getter').click(function(){
+        $('#date').val(this.dataset.get);
+        $('.calendarbox').animate({opacity:0}, 500, function(){
+            $('.calendarbox').remove();
+            $('.screen').remove();
+        });
+    });
+}
+
+function getCalendar(fieldDate) {
+    if ($('.calendarbox').length) return;
+    $('body').append('<div class="screen"></div>');
+    $('body').append('<div class="calendarbox"><div id="calendar"></div></div>');
+    $('.screen').click(function(){
+        $('.calendarbox').animate({opacity:0}, 500, function(){
+            $('.calendarbox').remove();
+            $('.screen').remove();
+        });
+    });
+    makeCalendar(fieldDate);
+    $('.calendarbox').animate({opacity:1}, 500);
+}
