@@ -37,7 +37,10 @@
             },
         ];
         if (localStorage.getItem('addTovar')) {
-            tovardata.push(JSON.parse(localStorage.getItem('addTovar')));
+            let tovar = JSON.parse(localStorage.getItem('addTovar'));
+            for (let i of tovar) {
+                tovardata.push(i);
+            }
             localStorage.removeItem('addTovar');
         }
     </script>

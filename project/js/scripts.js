@@ -161,12 +161,12 @@ function getCurrency1() {
 
 function getCurrency2() {
     $.get('https://www.cbr-xml-daily.ru/daily_json.js', function(response){
-        $('#currency2').html(JSON.parse(response).Valute.USD.Value.toFixed(2) + ' рублей за доллар');
+        $('#currency2').html(JSON.parse(response).Valute.EUR.Value.toFixed(2) + ' рублей за евро');
     });
 }
 
 function getCurrency3() {
-    fetch("https://www.cbr-xml-daily.ru/daily_json.js").then(response => response.json()).then(response => $('#currency3').html(response.Valute.USD.Value.toFixed(2) + ' рублей за доллар'));
+    fetch("https://www.cbr-xml-daily.ru/daily_json.js").then(response => response.json()).then(response => $('#currency3').html(response.Valute.CNY.Value.toFixed(2) + ' рублей за юань'));
 }
 
 function formValidate(form) {
@@ -294,4 +294,21 @@ function getCalendar(fieldDate) {
     });
     makeCalendar(fieldDate);
     $('.calendarbox').animate({opacity:1}, 500);
+}
+
+function addTovar(tovar){
+    let basket = JSON.parse(localStorage.getItem('addTovar'));
+    let flag = false;
+    if (basket) {
+        for (let i of basket) {
+            if (i.id = tovar.id) {
+                i.qty += tovar.qty;
+                flag = true;
+            }
+        }
+        if (!flag) basket.push(tovar);
+    } else {
+        basket = [tovar];
+    }
+    localStorage.setItem('addTovar', JSON.stringify(basket));
 }

@@ -16,8 +16,11 @@
     <script src="js/main.js"></script>
     
     <script>
-    function addTovar(){
-        localStorage.setItem('addTovar', '{"id":4,"qty":1,"name":"Капибара 5","price": 100500}');
+    let tovar = {
+        id: 4,
+        name: 'Капибара 5',
+        price: 100500,
+        qty: 1
     }
     </script>
 </head>
@@ -148,7 +151,7 @@
                     <div class="pricedesk">
                         <p class="big">Это капибара</p>
                         <p class="price">12345 &#8381;</p>
-                        <button type="button" class="buy" onclick="addTovar()">Купить</button>
+                        <button type="button" class="buy" onclick="addTovar(tovar)">Купить</button>
                     </div>
                     
                     <div class="descriptions"></div>
