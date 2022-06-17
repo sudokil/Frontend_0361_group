@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Решение задач: "ускользающий блок".</title>
+        
+        <style>
+            body {
+                margin: 0;
+            }
+            .outer {
+                height: 800px;
+                width: 800px;
+                background: pink;
+                margin: 50px auto;
+                position: relative;
+            }
+            .inner {
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                background: green;
+                top: 380px;
+                left: 380px;
+            }
+            .hidden {
+                display: none !important;
+            }
+        </style>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('.inner').addEventListener('click', clicker);
+            });
+            
+            function clicker(event) {
+                let outercoords = document.querySelector('.outer').getBoundingClientRect();
+                let block = document.querySelector('.inner');
+                
+                let cursorX = event.clientX - outercoords.left;
+                let cursorY = event.clientY - outercoords.top;
+                
+                let newleft;
+                do {
+                    newleft = Math.floor(Math.random() * 760);
+                } while ((cursorX >= newleft) && (cursorX < newleft + 40));
+                
+                let newtop;
+                do {
+                    newtop = Math.floor(Math.random() * 760);
+                } while ((cursorY >= newtop) && (cursorY < newtop + 40));
+                
+                block.classList.add('hidden');
+                block.setAttribute('style', `left:${newleft}px;top:${newtop}px;`);
+                block.classList.remove('hidden');
+            }
+        </script>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="inner"></div>
+        </div>
+    </body>
+</html>
