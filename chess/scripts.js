@@ -29,20 +29,97 @@ const CHECKER = {
     king(a, b) {
         return (Math.abs(a.x - b.x) <= 1) && (Math.abs(a.y - b.y) <= 1);
     },
-    queen(a, b) { // TODO сделать проверку правильности хода
-        return true;
+    queen(a, b) {
+        return CHECKER.rook(a, b) || CHECKER.bishop(a, b);
     },
-    rook(a, b) { // TODO сделать проверку правильности хода
-        return true;
+    rook(a, b) {
+        if ((a.x == b.x) || (a.y == b.y)) {
+            if (Math.abs(a.x - b.x + a.y - b.y) == 1) {
+                return true;
+            }
+            if (a.x == b.x) {
+                if (a.y < b.y) {
+                    start = a.y + 1;
+                    stop = b.y;
+                } else {
+                    start = b.y + 1;
+                    stop = a.y;
+                }
+                for (let i = start; i < stop; i++) {
+                    for (f of figureset) {
+                        if (f.position == getPositionFromCoords(a.x, i)) {
+                            return false;
+                        }
+                    }
+                }
+            } else {
+                if (a.x < b.x) {
+                    start = a.x + 1;
+                    stop = b.x;
+                } else {
+                    start = b.x + 1;
+                    stop = a.x;
+                }
+                for (let i = start; i < stop; i++) {
+                    let cell = getPositionFromCoords(i, a.y);
+                    for (f of figureset) {
+                        if (f.position == cell) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
     },
-    bishop(a, b) { // TODO сделать проверку правильности хода
-        return true;
+    bishop(a, b) {
+        if ((a.x + a.y == b.x + b.y) || (a.x - a.y == b.x - b.y)) {
+            if (Math.abs(a.x - b.x) + Math.abs(a.y - b.y) == 2) {
+                return true;
+            }
+            if (a.x + a.y == b.x + b.y) {
+                if (a.x > b.x) {
+                    start = b.x + 1;
+                    stop = a.x;
+                } else {
+                    start = a.x + 1;
+                    stop = b.x;
+                }
+                for (let i = start; i < stop; i++) {
+                    for (f of figureset) {
+                        if (f.position == getPositionFromCoords(i, (a.x + a.y) - i)) {
+                            return false;
+                        }
+                    }
+                }
+            } else {
+                if (a.x > b.x) {
+                    start = b.x + 1;
+                    stop = a.x;
+                } else {
+                    start = a.x + 1;
+                    stop = b.x;
+                }
+                for (let i = start; i < stop; i++) {
+                    for (f of figureset) {
+                        if (f.position == getPositionFromCoords(i, i - b.x + b.y)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
     },
     knight(a, b) {
         return ((Math.abs(a.x - b.x) == 1) && (Math.abs(a.y - b.y) == 2)) || ((Math.abs(a.x - b.x) == 2) && (Math.abs(a.y - b.y) == 1));
     },
     pawn(a, b) { // TODO сделать проверку правильности хода
-        return true;
+        return false;
     }
 };
 let figureset = [];
@@ -91,6 +168,13 @@ function getCellSelector(cellName, line=true) {
     } else {
         return {x, y};
     }
+}
+
+function getPositionFromCoords(x, y) {
+    const letters = '  abcdefgh';
+    let letter = letters[x];
+    let digit = 10 - y;
+    return letter + digit;
 }
 
 function getPosition(cell) {
@@ -151,6 +235,7 @@ function move(beat=false) {
     let finish = document.querySelector('.finish');
     start.classList.remove('start');
     finish.classList.remove('finish');
+    console.log(start, finish);
     let pos1 = getPosition(start);
     let pos2 = getPosition(finish);
     let fig, beatfig;
@@ -181,7 +266,6 @@ function move(beat=false) {
             fig.nomoves = false;
         }
     }
-
 }
 
 /* main */

@@ -108,9 +108,30 @@ $(function(){
         });
     }
     
+    $('.totop').click(function(){
+        $('html').animate({scrollTop: 0}, 1000);
+    });
     
+    $(window).scroll(function(){
+        if ($(window).scrollTop() > 150) {
+            $('.totop').removeClass('hidden');
+        } else {
+            $('.totop').addClass('hidden');
+        }
+    });
+    $(window).trigger('scroll');
     
-    
-    
+    $(window).on('storage', function(){
+        if (localStorage.getItem('addTovar')) {
+            let sum = 0;
+            for (item of JSON.parse(localStorage.getItem('addTovar'))) {
+                sum += item.qty
+            }
+            $('header .order span').html(sum).removeClass('hidden');
+        } else {
+            $('header .order span').html(0).addClass('hidden');
+        }
+    });
+    $(window).trigger('storage');
     
 });

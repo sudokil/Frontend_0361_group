@@ -301,7 +301,7 @@ function addTovar(tovar){
     let flag = false;
     if (basket) {
         for (let i of basket) {
-            if (i.id = tovar.id) {
+            if (i.id == tovar.id) {
                 i.qty += tovar.qty;
                 flag = true;
             }
@@ -311,4 +311,5 @@ function addTovar(tovar){
         basket = [tovar];
     }
     localStorage.setItem('addTovar', JSON.stringify(basket));
+    $(window).trigger('storage');
 }
