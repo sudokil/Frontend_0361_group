@@ -41,7 +41,7 @@
             for (let i of tovar) {
                 tovardata.push(i);
             }
-            localStorage.removeItem('addTovar');
+            //localStorage.removeItem('addTovar');
         }
     </script>
 </head>
@@ -80,7 +80,7 @@
             <div class="table"></div>
             
             <div class="form">
-                <form action="https://jsonplaceholder.typicode.com/posts" method="POST" name="orderform">
+                <form action="https://jsonplaceholder.typicode.com/posts" method="POST" name="orderform" onsubmit="localStorage.removeItem('addTovar');">
                     <fieldset>
                         <legend>Данные получателя:</legend>
                         

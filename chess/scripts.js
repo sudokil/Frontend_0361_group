@@ -46,11 +46,7 @@ const CHECKER = {
                     stop = a.y;
                 }
                 for (let i = start; i < stop; i++) {
-                    for (f of figureset) {
-                        if (f.position == getPositionFromCoords(a.x, i)) {
-                            return false;
-                        }
-                    }
+                    if (getFigure(getPositionFromCoords(a.x, i))) return false;
                 }
             } else {
                 if (a.x < b.x) {
@@ -61,12 +57,7 @@ const CHECKER = {
                     stop = a.x;
                 }
                 for (let i = start; i < stop; i++) {
-                    let cell = getPositionFromCoords(i, a.y);
-                    for (f of figureset) {
-                        if (f.position == cell) {
-                            return false;
-                        }
-                    }
+                    if (getFigure(getPositionFromCoords(i, a.y))) return false;
                 }
             }
             return true;
@@ -88,11 +79,7 @@ const CHECKER = {
                     stop = b.x;
                 }
                 for (let i = start; i < stop; i++) {
-                    for (f of figureset) {
-                        if (f.position == getPositionFromCoords(i, (a.x + a.y) - i)) {
-                            return false;
-                        }
-                    }
+                    if (getFigure(getPositionFromCoords(i, a.x + a.y - i))) return false;
                 }
             } else {
                 if (a.x > b.x) {
@@ -103,11 +90,7 @@ const CHECKER = {
                     stop = b.x;
                 }
                 for (let i = start; i < stop; i++) {
-                    for (f of figureset) {
-                        if (f.position == getPositionFromCoords(i, i - b.x + b.y)) {
-                            return false;
-                        }
-                    }
+                    if (getFigure(getPositionFromCoords(i, i - b.x + b.y))) return false;
                 }
             }
             return true;
@@ -118,7 +101,16 @@ const CHECKER = {
     knight(a, b) {
         return ((Math.abs(a.x - b.x) == 1) && (Math.abs(a.y - b.y) == 2)) || ((Math.abs(a.x - b.x) == 2) && (Math.abs(a.y - b.y) == 1));
     },
-    pawn(a, b) { // TODO сделать проверку правильности хода
+    whitepawn(a, b) { // TODO сделать проверку правильности хода
+        return false;
+    },
+    whitepawnbeat(a, b) { // TODO сделать проверку правильности хода
+        return false;
+    },
+    blackpawn(a, b) { // TODO сделать проверку правильности хода
+        return false;
+    },
+    blackpawnbeat(a, b) { // TODO сделать проверку правильности хода
         return false;
     }
 };
@@ -185,14 +177,64 @@ function getPosition(cell) {
     return letter + digit;
 }
 
+function getFigure(cellName) {
+    for (f of figureset) {
+        if (f.position == cellName) {
+            return f;
+        }
+    }
+    return null;
+}
+
 function checkMove(pos1, pos2, fig, beat=false) {
     let a = getCellSelector(pos1, false);
     let b = getCellSelector(pos2, false);
     let action = CHECKER[fig.name];
     if (fig.name == 'pawn') {
-        // TODO расписать варианты для цветов, начального положения (двойной ход) и боя пешек (в том числе бой на проходе)
-    } else if (fig.name == 'king') {
-        // TODO расписать варианты для длинной и короткой рокировок.
+        if (fig.color == 'white') {
+            if (beat) {
+                action = CHECKER['whitepawnbeat'];
+            } else {
+                action = CHECKER['whitepawn'];
+            }
+        } else {
+            if (beat) {
+                action = CHECKER['blackpawnbeat'];
+            } else {
+                action = CHECKER['blackpawn'];
+            }
+        }
+    } else if ((fig.name == 'king') && (fig.nomoves)) {
+        let res = null;
+        if (fig.color == 'white') {
+            if (pos2 == 'g1') {
+                res = getFigure('h1');
+                if (res.nomoves && (res.name == 'rook') && (res.color == 'white')) {
+                    // TODO проверить промежуточные поля, переставить ладью на 'f1' и вернуть true
+                    //return true;
+                }
+            } else if (pos2 == 'c1') {
+                res = getFigure('a1');
+                if (res.nomoves && (res.name == 'rook') && (res.color == 'white')) {
+                    // TODO проверить промежуточные поля, переставить ладью на 'd1' и вернуть true
+                    //return true;
+                }
+            }
+        } else if (fig.color == 'black') {
+            if (pos2 == 'g8') {
+                res = getFigure('h8');
+                if (res.nomoves && (res.name == 'rook') && (res.color == 'black')) {
+                    // TODO проверить промежуточные поля, переставить ладью на 'f8' и вернуть true
+                    //return true;
+                }
+            } else if (pos2 == 'c8') {
+                res = getFigure('a8');
+                if (res.nomoves && (res.name == 'rook') && (res.color == 'black')) {
+                    // TODO проверить промежуточные поля, переставить ладью на 'd8' и вернуть true
+                    //return true;
+                }
+            }
+        }
     }
     return action(a, b);
 }
@@ -212,8 +254,6 @@ function ChessFigure(name, color, position) {
         if (((this.color == 'white') && (this.position == 'e1')) || ((this.color == 'black') && (this.position == 'e8'))) this.nomoves = true;
     } else if (this.name == 'rook') {
         if (((this.color == 'white') && (this.position in ['a1', 'h1'])) || ((this.color == 'black') && (this.position in ['a8', 'h8']))) this.nomoves = true;
-    } else if (this.name == 'pawn') {
-        if (((this.color == 'white') && (this.position in ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'])) || ((this.color == 'black') && (this.position in ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7']))) this.nomoves = true;
     }
 }
 
@@ -235,20 +275,12 @@ function move(beat=false) {
     let finish = document.querySelector('.finish');
     start.classList.remove('start');
     finish.classList.remove('finish');
-    console.log(start, finish);
     let pos1 = getPosition(start);
     let pos2 = getPosition(finish);
-    let fig, beatfig;
-    for (f of figureset) {
-        if (f.position == pos1) {
-            fig = f;
-        } else if (beat) {
-            if (f.position == pos2) {
-                beatfig = f;
-            }
-        }
-    }
+    let fig;
+    fig = getFigure(pos1);
     if (beat) {
+        let beatfig = getFigure(pos2);
         if (beatfig.color != fig.color) {
             if (checkMove(pos1, pos2, fig, true)) {
                 figureset.splice(figureset.indexOf(beatfig), 1);
@@ -256,6 +288,7 @@ function move(beat=false) {
                 fig.position = pos2;
                 fig.render();
                 fig.nomoves = false;
+                console.log(fig.color, fig.name, pos1, 'beat', pos2);
             }
         }
     } else {
@@ -264,6 +297,7 @@ function move(beat=false) {
             fig.position = pos2;
             fig.render();
             fig.nomoves = false;
+            console.log(fig.color, fig.name, pos1, 'walk', pos2);
         }
     }
 }

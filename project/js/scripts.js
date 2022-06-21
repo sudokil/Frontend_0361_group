@@ -304,6 +304,7 @@ function addTovar(tovar){
             if (i.id == tovar.id) {
                 i.qty += tovar.qty;
                 flag = true;
+                break;
             }
         }
         if (!flag) basket.push(tovar);
